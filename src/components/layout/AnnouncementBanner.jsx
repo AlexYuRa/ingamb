@@ -14,13 +14,13 @@ const AVISOS = [
   {
     id: 2,
     texto: '🎓 Convocatoria: Proyecto FONDECYT 2025 — Inscripciones abiertas hasta el 30 de junio.',
-    link: '/investigacion#proyectos',
+    link: '/investigacion/proyectos',
     externo: false,
   },
   {
     id: 3,
     texto: '📢 Acreditación SINEACE: Resultados de la visita de evaluación externa disponibles.',
-    link: '/nosotros#historia',
+    link: '/nosotros/historia',
     externo: false,
   },
 ];
@@ -43,7 +43,7 @@ export default function AnnouncementBanner() {
         animate={{ height: 'auto', opacity: 1 }}
         exit={{ height: 0, opacity: 0 }}
         transition={{ duration: 0.3 }}
-        className="bg-[#F58220] text-white overflow-hidden"
+        className="bg-[#E6AC09] text-white overflow-hidden"
       >
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex items-center justify-between gap-3 py-2.5">

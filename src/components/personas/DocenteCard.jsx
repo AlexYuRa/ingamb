@@ -17,9 +17,9 @@ export default function DocenteCard({ docente }) {
       transition={{ duration: 0.3 }}
       className="group h-full"
     >
-      <div className="h-full bg-white rounded-2xl border border-gray-100 hover:border-[#F58220]/30 hover:shadow-[0_8px_32px_rgba(245,130,32,0.12)] transition-all duration-300 flex flex-col overflow-hidden">
+      <div className="h-full bg-white rounded-2xl border border-gray-100 hover:border-[#E6AC09]/30 hover:shadow-[0_8px_32px_rgba(230,172,9,0.12)] transition-all duration-300 flex flex-col overflow-hidden">
         {/* Franja superior con avatar */}
-        <div className="relative bg-gradient-to-br from-[#002D62] to-[#001a3d] pt-8 pb-12 flex justify-center items-end">
+        <div className="relative bg-gradient-to-br from-[#12377B] to-[#000C4A] pt-8 pb-12 flex justify-center items-end">
           {/* Patrón sutil */}
           <div className="absolute inset-0 opacity-[0.06]"
             style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '16px 16px' }}
@@ -35,15 +35,15 @@ export default function DocenteCard({ docente }) {
             )}
           </div>
           {/* Acento naranja bajo el avatar */}
-          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#F58220]/60 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#E6AC09]/60 to-transparent" />
         </div>
 
         {/* Contenido textual */}
         <div className="flex flex-col flex-1 p-5 text-center">
-          <p className="text-[#F58220] text-[10px] font-black uppercase tracking-[0.2em] mb-1.5">
+          <p className="text-[#E6AC09] text-[10px] font-black uppercase tracking-[0.2em] mb-1.5">
             {docente.grado}
           </p>
-          <h4 className="font-display font-bold text-[#002D62] text-sm leading-tight mb-1 group-hover:text-[#002D62]">
+          <h4 className="font-display font-bold text-[#12377B] text-sm leading-tight mb-1 group-hover:text-[#12377B]">
             {docente.nombre}
           </h4>
           <p className="text-gray-400 text-xs leading-relaxed mb-4 flex-1">
@@ -53,7 +53,7 @@ export default function DocenteCard({ docente }) {
           {docente.correo && (
             <a
               href={`mailto:${docente.correo}`}
-              className="inline-flex items-center justify-center gap-1.5 text-[10px] font-bold text-[#002D62]/60 hover:text-[#F58220] transition-colors py-2 border-t border-gray-100"
+              className="inline-flex items-center justify-center gap-1.5 text-[10px] font-bold text-[#12377B]/60 hover:text-[#E6AC09] transition-colors py-2 border-t border-gray-100"
             >
               <Mail className="w-3 h-3" />
               {docente.correo}

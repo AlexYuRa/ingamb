@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply font-body text-gray-800 antialiased bg-light;
+    @apply font-body text-ink antialiased bg-light;
   }
 }
 
@@ -14,4 +14,16 @@
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Accesibilidad: respeta la preferencia de movimiento reducido del sistema. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

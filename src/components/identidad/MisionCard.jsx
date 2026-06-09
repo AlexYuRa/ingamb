@@ -18,16 +18,16 @@ export default function MisionCard({ title, description, icon }) {
     >
       <div className="h-full relative bg-white border border-gray-100 rounded-2xl overflow-hidden p-8 flex flex-col shadow-lg hover:shadow-xl transition-shadow">
         {/* Acento superior */}
-        <div className="absolute left-0 top-0 right-0 h-1 bg-gradient-to-r from-[#002D62] to-[#F58220]" />
+        <div className="absolute left-0 top-0 right-0 h-1 bg-gradient-to-r from-[#12377B] to-[#E6AC09]" />
 
         {/* Ícono */}
         {icon && (
           <div
             className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 relative"
             style={{
-              background: 'rgba(245,130,32,0.15)',
-              border: '1px solid rgba(245,130,32,0.3)',
-              boxShadow: '0 0 20px rgba(245,130,32,0.12)',
+              background: 'rgba(230,172,9,0.15)',
+              border: '1px solid rgba(230,172,9,0.3)',
+              boxShadow: '0 0 20px rgba(230,172,9,0.12)',
             }}
           >
             {icon}
@@ -35,10 +35,10 @@ export default function MisionCard({ title, description, icon }) {
         )}
 
         {/* Línea naranja */}
-        <div className="w-8 h-0.5 bg-[#F58220] rounded-full mb-4" />
+        <div className="w-8 h-0.5 bg-[#E6AC09] rounded-full mb-4" />
 
         {/* Título */}
-        <h3 className="text-xl md:text-2xl font-display font-black text-[#002D62] mb-4 leading-tight">
+        <h3 className="text-xl md:text-2xl font-display font-black text-[#12377B] mb-4 leading-tight">
           {title}
         </h3>
 

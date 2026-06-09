@@ -1,91 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { ChevronRight, Home } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
+import { NAV_LINKS } from '../../constants/navigation';
 
-const routeMap = {
+// Nombre "extendido" de cada sección para la miga de pan (puede diferir del label
+// corto del menú, p. ej. "Nosotros" → "Sobre Nosotros").
+const sectionLabels = {
   '/nosotros': 'Sobre Nosotros',
   '/academico': 'Académico',
   '/autoridades': 'Autoridades',
   '/investigacion': 'Investigación',
-  '/contacto': 'Contacto'
-};
-
-const hashMap = {
-  '#mision-vision': 'Misión y Visión',
-  '#historia': 'Historia',
-  '#convenios-escuelas': 'Colegios Aliados',
-  '#perfil-ingresante': 'Perfil',
-  '#perfil-egresado': 'Perfil',
-  '#plan-estudios': 'Plan de Estudios',
-  '#titulacion': 'Grados y Títulos',
-  '#direccion': 'Dirección',
-  '#docentes': 'Docentes',
-  '#organigrama': 'Organigrama',
-  '#lineas': 'Líneas de Investigación',
-  '#proyectos': 'Proyectos',
-  '#publicaciones': 'Publicaciones',
-  '#convenios': 'Convenios de Prácticas'
+  '/contacto': 'Contacto',
 };
 
 export default function Breadcrumbs() {
-  const location = useLocation();
-  const [currentHash, setCurrentHash] = useState(location.hash);
+  const { pathname } = useLocation();
 
-  useEffect(() => {
-    if (location.hash) {
-      setCurrentHash(location.hash);
-    }
+  if (pathname === '/') return null;
 
-    const sectionIds = Object.keys(hashMap).map(key => key.replace('#', ''));
-    
-    const handleScroll = () => {
-      const elements = sectionIds
-        .map(id => document.getElementById(id))
-        .filter(el => el !== null);
-        
-      if (elements.length === 0) return;
+  const basePath = `/${pathname.split('/')[1]}`;
+  const section = NAV_LINKS.find((link) => link.path === basePath);
+  const subsection = section?.sublinks?.find((sub) => sub.path === pathname);
 
-      let currentId = '';
-      // Iteramos sobre los elementos, el último que cumpla la condición será el actual
-      // (asumiendo que están en orden en el DOM o recorriéndolos)
-      // Como elements está en orden del hashMap, idealmente el hashMap debería estar en orden.
-      // Para ser seguros, los ordenamos por su posición absoluta en pantalla:
-      elements.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
-
-      for (const el of elements) {
-        const rect = el.getBoundingClientRect();
-        // Si el borde superior está por encima de la mitad de la pantalla
-        if (rect.top <= 300) {
-          currentId = `#${el.id}`;
-        }
-      }
-
-      if (currentId) {
-        setCurrentHash(currentId);
-      } else if (window.scrollY < 100) {
-        // Si estamos al tope de la página
-        setCurrentHash('');
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    // Ejecutar una vez después de que cargue la página
-    setTimeout(handleScroll, 150);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [location.pathname]);
-
-  if (location.pathname === '/') return null;
-
-  const pathName = routeMap[location.pathname] || 
-    (location.pathname.length > 1 
-      ? location.pathname.charAt(1).toUpperCase() + location.pathname.slice(2) 
-      : '');
-      
-  const hashName = hashMap[currentHash];
+  const sectionName =
+    sectionLabels[basePath] ||
+    section?.name ||
+    (basePath.length > 1 ? basePath.charAt(1).toUpperCase() + basePath.slice(2) : '');
 
   return (
     <div className="bg-pucp-blue-dark py-3 w-full">
@@ -97,23 +37,24 @@ export default function Breadcrumbs() {
                 Inicio
               </Link>
             </li>
-            
+
             <li>
               <div className="flex items-center">
                 <ChevronRight className="w-4 h-4 text-white/60 mx-1" />
-                <Link to={location.pathname} className={`hover:text-white transition-colors ${!hashName ? 'text-white font-semibold' : ''}`}>
-                  {pathName}
+                <Link
+                  to={basePath}
+                  className={`hover:text-white transition-colors ${!subsection ? 'text-white font-semibold' : ''}`}
+                >
+                  {sectionName}
                 </Link>
               </div>
             </li>
 
-            {hashName && (
+            {subsection && (
               <li>
                 <div className="flex items-center">
                   <ChevronRight className="w-4 h-4 text-white/60 mx-1" />
-                  <span className="text-white font-semibold">
-                    {hashName}
-                  </span>
+                  <span className="text-white font-semibold">{subsection.name}</span>
                 </div>
               </li>
             )}

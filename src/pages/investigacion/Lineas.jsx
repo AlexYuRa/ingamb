@@ -26,9 +26,9 @@ export default function Lineas() {
               whileHover={{ y: -6 }}
               className="group h-full"
             >
-              <div className="h-full bg-white rounded-2xl border border-gray-100 hover:border-[#F58220]/40 hover:shadow-[0_8px_32px_rgba(245,130,32,0.1)] transition-all duration-300 overflow-hidden flex flex-col">
+              <div className="h-full bg-white rounded-2xl border border-gray-100 hover:border-[#E6AC09]/40 hover:shadow-[0_8px_32px_rgba(230,172,9,0.1)] transition-all duration-300 overflow-hidden flex flex-col">
                 {/* Cabecera coloreada */}
-                <div className="bg-[#002D62] px-6 pt-6 pb-8 relative overflow-hidden">
+                <div className="bg-[#12377B] px-6 pt-6 pb-8 relative overflow-hidden">
                   {/* Patrón de fondo */}
                   <div className="absolute inset-0 opacity-[0.06]"
                     style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '16px 16px' }}
@@ -37,7 +37,7 @@ export default function Lineas() {
                   <span className="absolute top-4 right-4 text-5xl font-display font-black text-white/10 leading-none select-none">
                     {String(idx + 1).padStart(2, '0')}
                   </span>
-                  <div className="w-8 h-0.5 bg-[#F58220] rounded-full mb-3 relative" />
+                  <div className="w-8 h-0.5 bg-[#E6AC09] rounded-full mb-3 relative" />
                   <h3 className="text-lg font-display font-black text-white leading-snug relative">
                     {linea.nombre}
                   </h3>
@@ -52,7 +52,7 @@ export default function Lineas() {
                     <span className="block text-[10px] font-black uppercase tracking-[0.15em] text-gray-400 mb-1">
                       Responsable de línea
                     </span>
-                    <span className="text-sm font-bold text-[#002D62]">
+                    <span className="text-sm font-bold text-[#12377B]">
                       {linea.responsable}
                     </span>
                   </div>

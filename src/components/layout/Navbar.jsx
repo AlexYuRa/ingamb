@@ -6,55 +6,18 @@ import { Phone, Mail, Search, ChevronDown, Menu, X } from 'lucide-react';
 import logo from '../../assets/unt1.png';
 import Breadcrumbs from './Breadcrumbs';
 import AnnouncementBanner from './AnnouncementBanner';
-
-const NAV_LINKS = [
-  { name: 'Inicio', path: '/' },
-  { 
-    name: 'Nosotros', 
-    path: '/nosotros',
-    sublinks: [
-      { name: 'Misión y Visión', path: '/nosotros#mision-vision' },
-      { name: 'Historia', path: '/nosotros#historia' },
-      { name: 'Colegios Aliados', path: '/nosotros#convenios-escuelas' }
-    ]
-  },
-  { 
-    name: 'Académico', 
-    path: '/academico',
-    sublinks: [
-      { name: 'Perfil del Ingresante', path: '/academico#perfil-ingresante' },
-      { name: 'Perfil del Egresado', path: '/academico#perfil-egresado' },
-      { name: 'Plan de Estudios', path: '/academico#plan-estudios' },
-      { name: 'Titulación', path: '/academico#titulacion' }
-    ]
-  },
-  { 
-    name: 'Autoridades', 
-    path: '/autoridades',
-    sublinks: [
-      { name: 'Dirección', path: '/autoridades#direccion' },
-      { name: 'Docentes', path: '/autoridades#docentes' },
-      { name: 'Organigrama', path: '/autoridades#organigrama' }
-    ]
-  },
-  { 
-    name: 'Investigación', 
-    path: '/investigacion',
-    sublinks: [
-      { name: 'Líneas', path: '/investigacion#lineas' },
-      { name: 'Proyectos', path: '/investigacion#proyectos' },
-      { name: 'Publicaciones', path: '/investigacion#publicaciones' },
-      { name: 'Convenios', path: '/investigacion#convenios' }
-    ]
-  },
-  { name: 'Contacto', path: '/contacto' }
-];
+import { NAV_LINKS } from '../../constants/navigation';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [schoolLogoOk, setSchoolLogoOk] = useState(false);
   const location = useLocation();
+
+  // Logo de la escuela (opcional): se carga desde public/logos/logo-escuela.png.
+  // Respeta la ruta base de Vite en cualquier entorno de despliegue.
+  const schoolLogoUrl = `${import.meta.env.BASE_URL}logos/logo-escuela.png`;
 
   const handleSearch = (e) => {
     if (e.key === 'Enter' || e.type === 'click') {
@@ -82,15 +45,15 @@ export default function Navbar() {
       )}
     >
       {/* Top Bar */}
-      <div className="bg-pucp-blue-dark text-gray-300 text-[13px] py-2 border-b-2 border-[#D4A017] hidden md:block">
+      <div className="bg-pucp-blue-dark text-gray-300 text-[13px] py-2 border-b-2 border-[#E6AC09] hidden md:block">
         <div className="container mx-auto px-4 md:px-6 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0">
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 md:gap-8">
             <span className="font-semibold text-white">¿Tienes alguna duda?</span>
-            <span className="flex items-center gap-1.5 hover:text-[#D4A017] transition-colors cursor-pointer">
+            <span className="flex items-center gap-1.5 hover:text-[#E6AC09] transition-colors cursor-pointer">
               <Phone className="w-4 h-4" />
               (+51) 920 027 273
             </span>
-            <span className="flex items-center gap-1.5 hover:text-[#D4A017] transition-colors cursor-pointer">
+            <span className="flex items-center gap-1.5 hover:text-[#E6AC09] transition-colors cursor-pointer">
               <Mail className="w-4 h-4" />
               facedu@unitru.edu.pe
             </span>
@@ -103,10 +66,10 @@ export default function Navbar() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyDown={handleSearch}
-                className="bg-transparent text-white placeholder-gray-400 text-[13px] px-3 py-1 outline-none border-b border-transparent focus:border-[#D4A017] transition-all w-32 focus:w-48"
+                className="bg-transparent text-white placeholder-gray-400 text-[13px] px-3 py-1 outline-none border-b border-transparent focus:border-[#E6AC09] transition-all w-32 focus:w-48"
               />
               <Search 
-                className="w-4 h-4 text-gray-400 ml-1 hover:text-[#D4A017] cursor-pointer transition-colors" 
+                className="w-4 h-4 text-gray-400 ml-1 hover:text-[#E6AC09] cursor-pointer transition-colors" 
                 onClick={handleSearch}
               />
             </div>
@@ -120,16 +83,34 @@ export default function Navbar() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
           {/* Logo / Marca */}
-          <Link to="/" className="flex items-center gap-3 group py-3">
-            <div className="h-16 md:h-20 flex items-center justify-center transition-transform group-hover:scale-105">
-              <img src={logo} alt="Logo UNT" className="h-full w-auto object-contain drop-shadow-md" />
+          <Link to="/" className="flex items-center gap-3 md:gap-4 group py-3">
+            <div className="flex items-center gap-3 md:gap-4 transition-transform group-hover:scale-[1.03]">
+              {/* Logo de la Universidad */}
+              <img
+                src={logo}
+                alt="Universidad Nacional de Trujillo"
+                className="h-20 md:h-24 w-auto object-contain drop-shadow-md"
+              />
+              {/* Separador (solo si existe el logo de la escuela) */}
+              {schoolLogoOk && (
+                <span className="block w-px h-12 md:h-16 bg-gray-300" aria-hidden="true" />
+              )}
+              {/* Logo de la Escuela: colocar la imagen en public/logos/logo-escuela.png.
+                  Si no existe, no se muestra (ni el logo ni el separador). */}
+              <img
+                src={schoolLogoUrl}
+                alt="Escuela Profesional de Educación Primaria"
+                onLoad={() => setSchoolLogoOk(true)}
+                onError={() => setSchoolLogoOk(false)}
+                className={clsx(
+                  'h-20 md:h-24 w-auto object-contain drop-shadow-md',
+                  !schoolLogoOk && 'hidden'
+                )}
+              />
             </div>
             <div className="flex flex-col">
               <span className="font-display font-bold tracking-tight leading-tight text-lg md:text-xl">
-                <span className="text-pucp-blue-dark">Educación</span> <span className="text-[#F58220]">Primaria</span>
-              </span>
-              <span className="text-xs text-black font-body hidden sm:block uppercase tracking-wider font-semibold mt-0.5">
-                UNIVERSIDAD NACIONAL
+                <span className="text-pucp-blue-dark">Educación</span> <span className="text-[#E6AC09]">Primaria</span>
               </span>
             </div>
           </Link>
@@ -143,7 +124,7 @@ export default function Navbar() {
                   end={link.path === '/'}
                   className={({ isActive }) => clsx(
                   'font-body font-medium text-[16px] transition-colors flex items-center px-7 py-5 md:py-6',
-                  isActive ? 'bg-[#D4A017] text-white' : 'text-white hover:bg-white/10'
+                  isActive ? 'bg-[#E6AC09] text-white' : 'text-white hover:bg-white/10'
                   )}
                 >
                   {link.name}

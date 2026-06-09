@@ -17,7 +17,7 @@ export function SectionTitle({ title, subtitle, center = false, badge, className
     const parts = text.split(/\*\*(.*?)\*\*/g);
     return parts.map((part, i) =>
       i % 2 === 1
-        ? <span key={i} className="text-[#F58220]">{part}</span>
+        ? <span key={i} className="text-[#E6AC09]">{part}</span>
         : part
     );
   };
@@ -32,12 +32,12 @@ export function SectionTitle({ title, subtitle, center = false, badge, className
     >
       {/* Badge opcional */}
       {badge && (
-        <span className="inline-block mb-3 text-xs font-black uppercase tracking-[0.18em] text-[#F58220] bg-[#F58220]/10 px-3 py-1 rounded-full border border-[#F58220]/20">
+        <span className="inline-block mb-3 text-xs font-black uppercase tracking-[0.18em] text-[#E6AC09] bg-[#E6AC09]/10 px-3 py-1 rounded-full border border-[#E6AC09]/20">
           {badge}
         </span>
       )}
 
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-black text-[#002D62] leading-tight mb-3">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-black text-[#12377B] leading-tight mb-3">
         {renderTitle(title)}
       </h2>
 
@@ -48,14 +48,14 @@ export function SectionTitle({ title, subtitle, center = false, badge, className
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45, ease: 'easeOut' }}
-          className="h-1 w-14 bg-[#F58220] rounded-full origin-left"
+          className="h-1 w-14 bg-[#E6AC09] rounded-full origin-left"
         />
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45, delay: 0.1, ease: 'easeOut' }}
-          className="h-1 w-4 bg-[#002D62] rounded-full origin-left"
+          className="h-1 w-4 bg-[#12377B] rounded-full origin-left"
         />
       </div>
 
