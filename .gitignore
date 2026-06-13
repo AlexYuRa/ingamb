@@ -27,3 +27,20 @@ dist-ssr
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Despliegue (Vercel)
+.vercel
+
+# Basura del SO (Windows / macOS)
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Cachés de tooling
+*.tsbuildinfo
+.eslintcache
+
+# Artefactos de impeccable (documentación de proceso, no se publican)
+.impeccable/
+DESIGN.md
+PRODUCT.md
