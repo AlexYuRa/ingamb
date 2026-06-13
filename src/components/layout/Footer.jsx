@@ -56,7 +56,7 @@ export default function Footer() {
             {/* Columna 1: Identidad + Redes */}
             <div>
               <div className="flex items-center gap-3 mb-5">
-                <img src={logo} alt="Logo UNT" className="h-14 w-auto object-contain drop-shadow brightness-200" />
+                <img src={logo} alt="Logo UNT" loading="lazy" className="h-14 w-auto object-contain drop-shadow brightness-200" />
                 <div className="flex flex-col">
                   <span className="font-display font-bold leading-tight text-base text-white">
                     Educación Primaria
@@ -78,7 +78,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     title={socialLabels[red] || red}
-                    className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#E6AC09] flex items-center justify-center transition-colors duration-200"
+                    className="w-11 h-11 rounded-full bg-white/10 hover:bg-gold flex items-center justify-center transition-colors duration-200"
                     aria-label={`Visitar ${socialLabels[red] || red}`}
                   >
                     {socialIcons[red] || <span className="text-xs font-bold uppercase">{red.charAt(0)}</span>}
@@ -89,7 +89,7 @@ export default function Footer() {
 
             {/* Columna 2: Enlaces Rápidos */}
             <div>
-              <h3 className="font-display font-bold text-base mb-5 text-[#E6AC09] uppercase tracking-wider">
+              <h3 className="font-display font-bold text-base mb-5 text-gold uppercase tracking-wider">
                 Información
               </h3>
               <ul className="space-y-2.5">
@@ -106,7 +106,7 @@ export default function Footer() {
                       to={to}
                       className="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-150 text-sm flex items-center gap-1.5"
                     >
-                      <span className="text-[#E6AC09] text-xs">›</span>
+                      <span className="text-gold text-xs">›</span>
                       {label}
                     </Link>
                   </li>
@@ -116,20 +116,20 @@ export default function Footer() {
 
             {/* Columna 3: Contacto */}
             <div>
-              <h3 className="font-display font-bold text-base mb-5 text-[#E6AC09] uppercase tracking-wider">
+              <h3 className="font-display font-bold text-base mb-5 text-gold uppercase tracking-wider">
                 Contacto
               </h3>
               <ul className="space-y-4">
                 <li className="flex gap-3 text-gray-300 text-sm items-start">
-                  <MapPin className="w-4 h-4 text-[#E6AC09] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-gold shrink-0 mt-0.5" />
                   <span>{informacionContacto.direccion}</span>
                 </li>
                 <li className="flex gap-3 text-gray-300 text-sm items-center">
-                  <Phone className="w-4 h-4 text-[#E6AC09] shrink-0" />
+                  <Phone className="w-4 h-4 text-gold shrink-0" />
                   <span>{informacionContacto.telefonos.join(' / ')}</span>
                 </li>
                 <li className="flex gap-3 text-sm items-center">
-                  <Mail className="w-4 h-4 text-[#E6AC09] shrink-0" />
+                  <Mail className="w-4 h-4 text-gold shrink-0" />
                   <a href={`mailto:${informacionContacto.correo}`} className="text-gray-300 hover:text-white transition-colors">
                     {informacionContacto.correo}
                   </a>
@@ -139,11 +139,11 @@ export default function Footer() {
 
             {/* Columna 4: Horarios + Links institucionales */}
             <div>
-              <h3 className="font-display font-bold text-base mb-5 text-[#E6AC09] uppercase tracking-wider">
+              <h3 className="font-display font-bold text-base mb-5 text-gold uppercase tracking-wider">
                 Horarios de Atención
               </h3>
               <div className="flex gap-3 text-gray-300 text-sm items-start mb-6">
-                <Clock className="w-4 h-4 text-[#E6AC09] shrink-0 mt-0.5" />
+                <Clock className="w-4 h-4 text-gold shrink-0 mt-0.5" />
                 <div className="space-y-1">
                   <p className="text-white font-semibold">Lunes a Viernes</p>
                   <p>08:00 – 13:00 hrs</p>
@@ -151,7 +151,7 @@ export default function Footer() {
                 </div>
               </div>
               <div className="space-y-2 border-t border-white/10 pt-5">
-                <p className="text-gray-400 text-xs uppercase tracking-wider mb-3 font-semibold">
+                <p className="text-gray-300 text-xs uppercase tracking-wider mb-3 font-semibold">
                   Portal Institucional
                 </p>
                 <a
@@ -190,7 +190,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="bg-black/20 py-4">
-        <div className="container mx-auto px-4 md:px-8 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-gray-400">
+        <div className="container mx-auto px-4 md:px-8 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-gray-300">
           <p>© {currentYear} Escuela Profesional de Educación Primaria — UNT. Todos los derechos reservados.</p>
           <p>Ley de Transparencia N° 27806 — Acceso a la Información Pública</p>
         </div>

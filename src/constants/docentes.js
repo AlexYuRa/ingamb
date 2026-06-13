@@ -1,86 +1,91 @@
+// Plana docente. Cada docente:
+//   - grado: el cargo/grado académico (Doctora, Magíster, Licenciado…)
+//   - cursoPrincipal: el curso/área principal que aparece en el FRENTE de la card
+//   - especialidades: lista que aparece al voltear la card (reverso). Agrega 2-3 por docente.
+//   - foto: ruta de la foto o null (muestra silueta placeholder)
 export const docentes = [
   {
     nombre: "Dra. María Elena Vargas Cárdenas",
-    especialidad: "Gestión Educativa y Políticas Públicas",
     grado: "Doctora",
-    correo: "mvargas@universidad.edu.pe",
+    cursoPrincipal: "Gestión Educativa y Políticas Públicas",
+    especialidades: ["Gestión Educativa y Políticas Públicas"],
     foto: null
   },
   {
     nombre: "Mg. Roberto Carlos Mendoza",
-    especialidad: "Didáctica de la Matemática",
     grado: "Magíster",
-    correo: "rmendoza@universidad.edu.pe",
+    cursoPrincipal: "Didáctica de la Matemática",
+    especialidades: ["Didáctica de la Matemática"],
     foto: null
   },
   {
     nombre: "Dra. Patricia Salinas",
-    especialidad: "Metodología de la Investigación",
     grado: "Doctora",
-    correo: "psalinas@universidad.edu.pe",
+    cursoPrincipal: "Metodología de la Investigación",
+    especialidades: ["Metodología de la Investigación"],
     foto: null
   },
   {
     nombre: "Mg. Luis Fernando Gómez",
-    especialidad: "Evaluación Educativa",
     grado: "Magíster",
-    correo: "lgomez@universidad.edu.pe",
+    cursoPrincipal: "Evaluación Educativa",
+    especialidades: ["Evaluación Educativa"],
     foto: null
   },
   {
     nombre: "Dra. Carmen Rosa Jiménez",
-    especialidad: "Psicología del Aprendizaje",
     grado: "Doctora",
-    correo: "cjimenez@universidad.edu.pe",
+    cursoPrincipal: "Psicología del Aprendizaje",
+    especialidades: ["Psicología del Aprendizaje"],
     foto: null
   },
   {
     nombre: "Lic. Arturo Peralta Ruiz",
-    especialidad: "Didáctica de las Ciencias Naturales",
     grado: "Licenciado",
-    correo: "aperalta@universidad.edu.pe",
+    cursoPrincipal: "Didáctica de las Ciencias Naturales",
+    especialidades: ["Didáctica de las Ciencias Naturales"],
     foto: null
   },
   {
     nombre: "Mg. Silvia Condori",
-    especialidad: "Educación Inclusiva y Diversidad",
     grado: "Magíster",
-    correo: "scondori@universidad.edu.pe",
+    cursoPrincipal: "Educación Inclusiva y Diversidad",
+    especialidades: ["Educación Inclusiva y Diversidad"],
     foto: null
   },
   {
     nombre: "Dr. Jorge Villanueva",
-    especialidad: "Tecnologías Educativas e Innovación",
     grado: "Doctor",
-    correo: "jvillanueva@universidad.edu.pe",
+    cursoPrincipal: "Tecnologías Educativas e Innovación",
+    especialidades: ["Tecnologías Educativas e Innovación"],
     foto: null
   },
   {
     nombre: "Mg. Rosaura Montes",
-    especialidad: "Desarrollo Psicomotriz",
     grado: "Magíster",
-    correo: "rmontes@universidad.edu.pe",
+    cursoPrincipal: "Desarrollo Psicomotriz",
+    especialidades: ["Desarrollo Psicomotriz"],
     foto: null
   },
   {
     nombre: "Dr. Hernán Torres",
-    especialidad: "Historia y Ciudadanía",
     grado: "Doctor",
-    correo: "htorres@universidad.edu.pe",
+    cursoPrincipal: "Historia y Ciudadanía",
+    especialidades: ["Historia y Ciudadanía"],
     foto: null
   },
   {
     nombre: "Lic. Andrea Cáceres",
-    especialidad: "Didáctica de la Comunicación y Literatura",
     grado: "Licenciada",
-    correo: "acaceres@universidad.edu.pe",
+    cursoPrincipal: "Didáctica de la Comunicación y Literatura",
+    especialidades: ["Didáctica de la Comunicación y Literatura"],
     foto: null
   },
   {
     nombre: "Mg. Francisco Paredes",
-    especialidad: "Arte, Música y Creatividad",
     grado: "Magíster",
-    correo: "fparedes@universidad.edu.pe",
+    cursoPrincipal: "Arte, Música y Creatividad",
+    especialidades: ["Arte, Música y Creatividad"],
     foto: null
   }
 ];

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { GraduationCap, Award, Info, ChevronRight, ExternalLink, BookOpen, Star } from 'lucide-react';
 import useHeaderHeight from '../../hooks/useHeaderHeight';
@@ -11,20 +11,37 @@ import useHeaderHeight from '../../hooks/useHeaderHeight';
  * Se monta una vez dentro del Router para flotar sobre todas las páginas.
  */
 export default function FloatingAdmissions() {
-  const [isHovered, setIsHovered] = useState(false);
+  const [open, setOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === '/';
   const headerHeight = useHeaderHeight();
+  const containerRef = useRef(null);
+
+  // En táctil no hay hover: cerrar con Escape o al tocar fuera del panel.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
+    const onPointer = (e) => {
+      if (containerRef.current && !containerRef.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('pointerdown', onPointer);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('pointerdown', onPointer);
+    };
+  }, [open]);
 
   return (
     <div
+      ref={containerRef}
       style={{ top: headerHeight }}
-      className={`fixed left-0 bottom-4 z-[40] flex items-start transition-transform duration-500 ease-in-out ${isHovered ? 'translate-x-0' : '-translate-x-full'} ${!isHome ? 'max-md:hidden' : ''}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className={`fixed left-0 bottom-4 z-[40] flex items-start transition-transform duration-500 ease-in-out ${open ? 'translate-x-0' : '-translate-x-full'} ${!isHome ? 'max-md:hidden' : ''}`}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
     >
       {/* Contenido del panel */}
-      <div className="w-[300px] md:w-[350px] bg-[#12377B] rounded-br-3xl rounded-tr-3xl text-white p-4 md:p-5 shadow-xl h-full max-h-full flex flex-col relative">
+      <div className="w-[300px] md:w-[350px] bg-primary rounded-br-3xl rounded-tr-3xl text-white p-4 md:p-5 shadow-xl h-full max-h-full flex flex-col relative">
         <div className="flex items-center gap-2 mb-4 shrink-0">
           <GraduationCap className="w-7 h-7 md:w-8 md:h-8" />
           <h3 className="font-display font-black text-xl md:text-3xl">¿Cómo Postular?</h3>
@@ -113,22 +130,26 @@ export default function FloatingAdmissions() {
             href="https://www.admisionunt.info/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full bg-white text-[#12377B] font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors shadow-md text-base"
+            className="w-full bg-white text-primary font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors shadow-md text-base"
           >
             Portal de Admisión UNT <ExternalLink className="w-4 h-4" />
           </a>
         </div>
       </div>
 
-      {/* Pestaña visible (INGRESO) */}
-      <div
-        className="absolute right-0 top-[82px] translate-x-full bg-[#E6AC09] text-[#12377B] py-4 px-2 md:py-6 md:px-3.5 rounded-r-lg md:rounded-r-xl cursor-pointer flex flex-col items-center gap-3 md:gap-4 shadow-[4px_0_15px_rgba(0,0,0,0.15)]"
+      {/* Pestaña visible (INGRESO) — botón: accesible por teclado y tap en móvil */}
+      <button
+        type="button"
+        onClick={(e) => { e.stopPropagation(); setOpen((o) => !o); }}
+        aria-expanded={open}
+        aria-label={open ? 'Cerrar información de admisión' : 'Ver información de admisión'}
+        className="absolute right-0 top-[82px] translate-x-full bg-gold text-primary py-4 px-2 md:py-6 md:px-3.5 rounded-r-lg md:rounded-r-xl cursor-pointer flex flex-col items-center gap-3 md:gap-4 shadow-[4px_0_15px_rgba(0,0,0,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
       >
         <GraduationCap className="w-5 h-5 md:w-7 md:h-7" />
         <span className="[writing-mode:vertical-rl] rotate-180 font-bold tracking-[0.2em] text-[18px] md:text-[26px]">
           INGRESO
         </span>
-      </div>
+      </button>
     </div>
   );
 }

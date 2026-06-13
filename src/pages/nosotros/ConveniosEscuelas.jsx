@@ -45,9 +45,9 @@ export default function ConveniosEscuelas() {
               whileHover={{ y: -6 }}
               className="group"
             >
-              <div className="h-full flex flex-col bg-white rounded-2xl border border-gray-100 hover:border-[#E6AC09]/30 hover:shadow-[0_8px_32px_rgba(230,172,9,0.1)] transition-all duration-300 overflow-hidden">
+              <div className="h-full flex flex-col bg-white rounded-2xl border border-gray-100 hover:border-gold/30 hover:shadow-[0_8px_32px_rgba(230,172,9,0.1)] transition-all duration-300 overflow-hidden">
                 {/* Cabecera */}
-                <div className="bg-[#12377B] px-6 py-6 relative overflow-hidden flex items-center gap-4">
+                <div className="bg-primary px-6 py-6 relative overflow-hidden flex items-center gap-4">
                   <div className="absolute inset-0 opacity-[0.05]"
                     style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '14px 14px' }}
                   />
@@ -55,14 +55,14 @@ export default function ConveniosEscuelas() {
                   {/* Espacio para Imagen / Logo */}
                   <div className="w-16 h-16 bg-white/5 rounded-full border-2 border-white/10 flex-shrink-0 relative overflow-hidden z-10 flex items-center justify-center shadow-inner">
                     {colegio.logo ? (
-                      <img src={colegio.logo} alt={`Logo ${colegio.nombre}`} className="w-full h-full object-cover" />
+                      <img src={colegio.logo} alt={`Logo ${colegio.nombre}`} loading="lazy" className="w-full h-full object-cover" />
                     ) : (
                       <span className="text-white/20 text-[10px] font-bold uppercase tracking-widest text-center leading-tight">Foto<br/>Logo</span>
                     )}
                   </div>
 
                   <div className="relative z-10 flex-1">
-                    <span className="inline-block text-[9px] font-black uppercase tracking-[0.18em] text-[#E6AC09] bg-[#E6AC09]/15 border border-[#E6AC09]/25 px-2 py-0.5 rounded-full mb-1.5">
+                    <span className="inline-block text-[9px] font-black uppercase tracking-[0.18em] text-gold bg-gold/15 border border-gold/25 px-2 py-0.5 rounded-full mb-1.5">
                       Convenio Activo
                     </span>
                     <h3 className="text-xl font-display font-black text-white leading-tight">
@@ -78,10 +78,10 @@ export default function ConveniosEscuelas() {
                   </p>
                   <div className="space-y-2.5 border-t border-gray-100 pt-4">
                     <div className="flex items-center gap-2 text-xs text-gray-500">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#E6AC09] shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-gold shrink-0" />
                       <span className="font-semibold">{colegio.tipo}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-xs text-gray-400">
+                    <div className="flex items-center gap-2 text-xs text-gray-600">
                       <MapPin className="w-3.5 h-3.5 shrink-0" />
                       <span>{colegio.distrito}</span>
                     </div>

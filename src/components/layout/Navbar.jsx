@@ -45,31 +45,32 @@ export default function Navbar() {
       )}
     >
       {/* Top Bar */}
-      <div className="bg-pucp-blue-dark text-gray-300 text-[13px] py-2 border-b-2 border-[#E6AC09] hidden md:block">
+      <div className="bg-pucp-blue-dark text-gray-300 text-[13px] py-2 border-b-2 border-gold hidden md:block">
         <div className="container mx-auto px-4 md:px-8 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0">
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 md:gap-8">
             <span className="font-semibold text-white">¿Tienes alguna duda?</span>
-            <span className="flex items-center gap-1.5 hover:text-[#E6AC09] transition-colors cursor-pointer">
+            <span className="flex items-center gap-1.5 hover:text-gold transition-colors cursor-pointer">
               <Phone className="w-4 h-4" />
               (+51) 920 027 273
             </span>
-            <span className="flex items-center gap-1.5 hover:text-[#E6AC09] transition-colors cursor-pointer">
+            <span className="flex items-center gap-1.5 hover:text-gold transition-colors cursor-pointer">
               <Mail className="w-4 h-4" />
               facedu@unitru.edu.pe
             </span>
           </div>
           <div className="flex items-center">
             <div className="relative group flex items-center">
-              <input 
-                type="text" 
-                placeholder="Buscar..." 
+              <input
+                type="text"
+                placeholder="Buscar..."
+                aria-label="Buscar en el sitio"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyDown={handleSearch}
-                className="bg-transparent text-white placeholder-gray-400 text-[13px] px-3 py-1 outline-none border-b border-transparent focus:border-[#E6AC09] transition-all w-32 focus:w-48"
+                className="bg-transparent text-white placeholder-gray-400 text-[13px] px-3 py-1 outline-none border-b border-transparent focus:border-gold transition-all w-32 focus:w-48"
               />
               <Search 
-                className="w-4 h-4 text-gray-400 ml-1 hover:text-[#E6AC09] cursor-pointer transition-colors" 
+                className="w-4 h-4 text-gray-400 ml-1 hover:text-gold cursor-pointer transition-colors" 
                 onClick={handleSearch}
               />
             </div>
@@ -110,7 +111,7 @@ export default function Navbar() {
             </div>
             <div className="flex flex-col">
               <span className="font-display font-bold tracking-tight leading-tight text-lg md:text-xl">
-                <span className="text-pucp-blue-dark">Educación</span> <span className="text-[#E6AC09]">Primaria</span>
+                <span className="text-pucp-blue-dark">Educación</span> <span className="text-gold">Primaria</span>
               </span>
             </div>
           </Link>
@@ -124,7 +125,7 @@ export default function Navbar() {
                   end={link.path === '/'}
                   className={({ isActive }) => clsx(
                   'font-body font-medium text-[16px] transition-colors flex items-center px-7 py-5 md:py-6',
-                  isActive ? 'bg-[#E6AC09] text-white' : 'text-white hover:bg-white/10'
+                  isActive ? 'bg-gold text-white' : 'text-white hover:bg-white/10'
                   )}
                 >
                   {link.name}
@@ -154,10 +155,11 @@ export default function Navbar() {
           </nav>
 
           {/* Mobile Toggle */}
-          <button 
-            className="lg:hidden text-pucp-blue-dark p-2 focus:outline-none"
+          <button
+            className="lg:hidden text-pucp-blue-dark p-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-pucp-blue-dark focus-visible:ring-offset-2"
             onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
+            aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
+            aria-expanded={isOpen}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>

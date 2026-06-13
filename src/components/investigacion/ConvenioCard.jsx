@@ -12,7 +12,7 @@ export default function ConvenioCard({ convenio }) {
         </div>
         <Badge variant="info" className="w-fit mb-4">{convenio.tipo}</Badge>
         <p className="text-gray-600 font-body text-sm mb-4 flex-grow">{convenio.descripcion}</p>
-        <p className="text-xs font-bold text-gray-400 mt-auto bg-gray-50 p-2 rounded inline-block w-fit">
+        <p className="text-xs font-bold text-gray-600 mt-auto bg-gray-50 p-2 rounded inline-block w-fit">
           Vigencia: {convenio.vigencia}
         </p>
       </Card>

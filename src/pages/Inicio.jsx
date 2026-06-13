@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import PageWrapper from '../components/layout/PageWrapper';
@@ -6,7 +6,7 @@ import { SectionTitle } from '../components/ui/SectionTitle';
 import { Card } from '../components/ui/Card';
 import { BookOpen, Users, FlaskConical, GraduationCap, Handshake, ArrowRight, Calendar } from 'lucide-react';
 import { Button } from '../components/ui/Button';
-import frontImage from '../assets/frontunt.jpg';
+import frontImage from '../assets/frontunt.webp';
 import { noticias } from '../constants/noticias';
 import { director } from '../constants/autoridades';
 import useHeaderHeight from '../hooks/useHeaderHeight';
@@ -34,6 +34,22 @@ export default function Inicio() {
       window.removeEventListener('resize', update);
     };
   }, []);
+
+  // Carrusel del hero (máx. 3 imágenes): crossfade + zoom lento (Ken Burns).
+  // Reemplaza la 1ª (frontunt.webp) y agrega/quita placeholders cuando tengas
+  // tus fotos definitivas (déjalas en src/assets e impórtalas como frontImage).
+  const heroImages = [
+    frontImage,
+    'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1920&q=70',
+    'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=1920&q=70',
+  ];
+  const [heroIdx, setHeroIdx] = useState(0);
+  useEffect(() => {
+    if (heroImages.length < 2) return;
+    const id = setInterval(() => setHeroIdx((i) => (i + 1) % heroImages.length), 6000);
+    return () => clearInterval(id);
+  }, [heroImages.length]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.18 } }
@@ -64,16 +80,27 @@ export default function Inicio() {
           HERO — Motivador y enérgico para estudiantes
           ══════════════════════════════════════════ */}
       <section
-        className="relative overflow-hidden text-white flex items-center bg-cover bg-center"
-        style={{ backgroundImage: `url(${frontImage})`, minHeight: `calc(100dvh - ${headerHeight}px - ${cifrasHeight}px)` }}
+        className="relative overflow-hidden text-white flex items-center"
+        style={{ minHeight: `calc(100dvh - ${headerHeight}px - ${cifrasHeight}px)` }}
       >
+        {/* Carrusel de fondo: crossfade + zoom lento (Ken Burns). Las imágenes
+            rotan solas; el contenido del hero se queda fijo encima. */}
+        {heroImages.map((img, i) => (
+          <div
+            key={i}
+            aria-hidden="true"
+            className="absolute inset-0 z-0 bg-cover bg-center transition-opacity duration-[1500ms] ease-in-out"
+            style={{ backgroundImage: `url(${img})`, opacity: i === heroIdx ? 1 : 0 }}
+          />
+        ))}
+
         {/* Overlay doble: izquierda transparente, derecha azul sólido */}
-        <div className="absolute inset-0 z-0"
+        <div className="absolute inset-0 z-[1]"
           style={{ background: 'linear-gradient(110deg, rgba(0,0,0,0.05) 0%, rgba(0,29,70,0.62) 42%, rgba(0,20,55,0.77) 70%, rgba(0,18,50,0.80) 100%)' }}
         />
 
         {/* Patrón de puntos sutil */}
-        <svg className="absolute inset-0 w-full h-full z-0 opacity-[0.04]" xmlns="http://www.w3.org/2000/svg">
+        <svg className="absolute inset-0 w-full h-full z-[2] opacity-[0.04]" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="hero-dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
               <circle cx="2" cy="2" r="1.5" fill="white" />
@@ -83,7 +110,7 @@ export default function Inicio() {
         </svg>
 
         {/* Acento naranja diagonal en la derecha */}
-        <div className="absolute right-0 top-0 bottom-0 w-2 bg-gradient-to-b from-[#E6AC09] via-[#E6AC09]/60 to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-2 bg-gradient-to-b from-gold via-gold/60 to-transparent z-10" />
 
         <div className="container relative z-10 mx-auto px-4 md:px-8 pt-10 pb-10 lg:pt-12 lg:pb-14">
           <motion.div
@@ -118,7 +145,7 @@ export default function Inicio() {
                 <motion.button
                   whileHover={{ scale: 1.04, boxShadow: '0 0 32px rgba(230,172,9,0.5)' }}
                   whileTap={{ scale: 0.97 }}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#E6AC09] hover:bg-[#C49308] text-white font-black px-8 py-3.5 rounded-xl text-base transition-colors"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-[#C49308] text-white font-black px-8 py-3.5 rounded-xl text-base transition-colors"
                 >
                   <GraduationCap className="w-5 h-5" />
                   Ver Plan de Estudios
@@ -142,7 +169,7 @@ export default function Inicio() {
       {/* ══════════════════════════════════════════
           CIFRAS — Franja de impacto oscura
           ══════════════════════════════════════════ */}
-      <section ref={cifrasRef} className="bg-[#000C4A] py-0">
+      <section ref={cifrasRef} className="bg-blue-deep py-0">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4">
             {cifras.map((cifra, idx) => (
@@ -161,7 +188,7 @@ export default function Inicio() {
                   {cifra.numero}
                 </div>
                 <p className="text-white font-bold text-sm md:text-base">{cifra.etiqueta}</p>
-                <p className="text-white/40 text-xs mt-0.5">{cifra.sub}</p>
+                <p className="text-white/60 text-xs mt-0.5">{cifra.sub}</p>
               </motion.div>
             ))}
           </div>
@@ -185,9 +212,9 @@ export default function Inicio() {
               className="flex flex-col"
             >
               <h2 className="text-3xl md:text-4xl font-display font-bold text-pucp-blue-dark uppercase mb-2">
-                Bienvenida de la <span className="text-[#E6AC09]">Rectora</span>
+                Bienvenida de la <span className="text-gold">Rectora</span>
               </h2>
-              <div className="w-16 h-1 bg-[#E6AC09] mb-6"></div>
+              <div className="w-16 h-1 bg-gold mb-6"></div>
               
               <div className="text-gray-700 font-body space-y-4 leading-relaxed">
                 <p>
@@ -231,7 +258,7 @@ export default function Inicio() {
             <SectionTitle title="Noticias y Actualidad" subtitle="Últimas novedades, eventos y comunicados de la Escuela." />
             <Link
               to="/noticias"
-              className="inline-flex items-center gap-2 text-sm font-bold text-[#12377B] hover:text-[#E6AC09] transition-colors whitespace-nowrap shrink-0"
+              className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-gold transition-colors whitespace-nowrap shrink-0"
             >
               Ver todas <ArrowRight className="w-4 h-4" />
             </Link>
@@ -250,12 +277,13 @@ export default function Inicio() {
                 <Link to={noticia.link} className="block h-full group">
                   <Card className="h-full flex flex-col p-0 overflow-hidden hover:shadow-lg transition-shadow">
                     {/* Franja superior de color por categoría */}
-                    <div className="h-1.5 bg-[#12377B] w-full" />
+                    <div className="h-1.5 bg-primary w-full" />
                     {/* Imagen de la noticia */}
                     <div className="h-48 w-full overflow-hidden shrink-0">
                       <img
                         src={noticia.imagen}
                         alt={noticia.titulo}
+                        loading="lazy"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
@@ -269,13 +297,13 @@ export default function Inicio() {
                           {noticia.fechaFormateada}
                         </span>
                       </div>
-                      <h3 className="font-display font-bold text-[#12377B] text-base leading-snug mb-3 group-hover:text-[#E6AC09] transition-colors flex-1">
+                      <h3 className="font-display font-bold text-primary text-base leading-snug mb-3 group-hover:text-gold transition-colors flex-1">
                         {noticia.titulo}
                       </h3>
                       <p className="text-gray-600 text-sm leading-relaxed mb-4">
                         {noticia.resumen}
                       </p>
-                      <span className="mt-auto inline-flex items-center gap-1 text-[#E6AC09] text-sm font-bold group-hover:gap-2 transition-all">
+                      <span className="mt-auto inline-flex items-center gap-1 text-gold text-sm font-bold group-hover:gap-2 transition-all">
                         Leer más <ArrowRight className="w-3.5 h-3.5" />
                       </span>
                     </div>
@@ -313,21 +341,22 @@ export default function Inicio() {
                   whileHover={{ y: -6, scale: 1.02 }}
                 >
                   <Link to={acceso.link} className="block h-full group">
-                    <div className="h-full rounded-2xl overflow-hidden bg-white border border-gray-100 hover:border-[#E6AC09]/40 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(230,172,9,0.15)] flex flex-col">
+                    <div className="h-full rounded-2xl overflow-hidden bg-white border border-gray-100 hover:border-gold/40 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(230,172,9,0.15)] flex flex-col">
                       
                       {/* Imagen de Portada */}
                       <div className="h-32 w-full relative overflow-hidden shrink-0">
-                        <div className="absolute inset-0 bg-[#12377B]/40 mix-blend-multiply z-10 group-hover:bg-[#12377B]/20 transition-colors duration-500" />
-                        <img 
-                          src={acceso.imagen} 
-                          alt={acceso.titulo} 
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                        <div className="absolute inset-0 bg-primary/40 mix-blend-multiply z-10 group-hover:bg-primary/20 transition-colors duration-500" />
+                        <img
+                          src={acceso.imagen}
+                          alt={acceso.titulo}
+                          loading="lazy"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         />
                       </div>
 
                       {/* Contenido */}
                       <div className="p-6 flex flex-col flex-1 relative bg-white">
-                        <h3 className="text-lg font-display font-black text-[#12377B] mb-2 leading-tight group-hover:text-[#E6AC09] transition-colors">
+                        <h3 className="text-lg font-display font-black text-primary mb-2 leading-tight group-hover:text-gold transition-colors">
                           {acceso.titulo}
                         </h3>
                         <p className="text-gray-600 text-sm leading-relaxed flex-1">
@@ -335,7 +364,7 @@ export default function Inicio() {
                         </p>
 
                         {/* CTA flecha */}
-                        <div className="mt-4 flex items-center gap-1 text-[#E6AC09] text-xs font-bold group-hover:gap-2 transition-all">
+                        <div className="mt-4 flex items-center gap-1 text-gold text-xs font-bold group-hover:gap-2 transition-all">
                           Ver más <ArrowRight className="w-3.5 h-3.5" />
                         </div>
                       </div>
@@ -366,25 +395,26 @@ export default function Inicio() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="group relative rounded-3xl overflow-hidden bg-[#000C4A] h-[380px] md:h-[450px] flex items-end shadow-xl"
+              className="group relative rounded-3xl overflow-hidden bg-blue-deep h-[380px] md:h-[450px] flex items-end shadow-xl"
             >
               <div className="absolute inset-0">
                 <img 
-                  src="https://images.unsplash.com/photo-1587691592099-24045742c181?w=800&q=80" 
-                  alt="Módulo de Estimulación Temprana" 
+                  src="https://images.unsplash.com/photo-1587691592099-24045742c181?w=800&q=80"
+                  alt="Módulo de Estimulación Temprana"
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 opacity-50 mix-blend-luminosity"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#000C4A] via-[#000C4A]/80 to-transparent" />
-                <div className="absolute inset-0 bg-[#12377B]/20 mix-blend-multiply" />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-deep via-blue-deep/80 to-transparent" />
+                <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
               </div>
               <div className="relative z-10 p-8 md:p-10 w-full transform group-hover:-translate-y-2 transition-transform duration-500">
-                <span className="inline-block px-3.5 py-1.5 bg-[#E6AC09] text-white text-[10px] font-black tracking-widest uppercase rounded-md mb-4 shadow-lg">
+                <span className="inline-block px-3.5 py-1.5 bg-gold text-white text-[10px] font-black tracking-widest uppercase rounded-md mb-4 shadow-lg">
                   Aula Principal
                 </span>
                 <h3 className="text-2xl md:text-4xl font-display font-black text-white mb-3 leading-tight">
                   Módulo de Estimulación Temprana
                 </h3>
-                <div className="w-12 h-1 bg-[#E6AC09] mb-4 transition-all duration-500 group-hover:w-24"></div>
+                <div className="w-24 h-1 bg-gold mb-4 origin-left scale-x-50 transition-transform duration-500 group-hover:scale-x-100"></div>
                 <p className="text-white/80 text-sm md:text-base leading-relaxed max-w-lg">
                   Un espacio especializado y equipado con materiales didácticos de vanguardia para potenciar el desarrollo cognitivo y psicomotriz en la primera infancia.
                 </p>
@@ -397,25 +427,26 @@ export default function Inicio() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="group relative rounded-3xl overflow-hidden bg-[#000C4A] h-[380px] md:h-[450px] flex items-end shadow-xl"
+              className="group relative rounded-3xl overflow-hidden bg-blue-deep h-[380px] md:h-[450px] flex items-end shadow-xl"
             >
               <div className="absolute inset-0">
                 <img 
-                  src="https://images.unsplash.com/photo-1517430816045-df4b7ef11df1?w=800&q=80" 
-                  alt="Centro de Cómputo" 
+                  src="https://images.unsplash.com/photo-1517430816045-df4b7ef11df1?w=800&q=80"
+                  alt="Centro de Cómputo"
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 opacity-50 mix-blend-luminosity"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#000C4A] via-[#000C4A]/80 to-transparent" />
-                <div className="absolute inset-0 bg-[#12377B]/20 mix-blend-multiply" />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-deep via-blue-deep/80 to-transparent" />
+                <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
               </div>
               <div className="relative z-10 p-8 md:p-10 w-full transform group-hover:-translate-y-2 transition-transform duration-500">
-                <span className="inline-block px-3.5 py-1.5 bg-[#E6AC09] text-white text-[10px] font-black tracking-widest uppercase rounded-md mb-4 shadow-lg">
+                <span className="inline-block px-3.5 py-1.5 bg-gold text-white text-[10px] font-black tracking-widest uppercase rounded-md mb-4 shadow-lg">
                   Laboratorio
                 </span>
                 <h3 className="text-2xl md:text-4xl font-display font-black text-white mb-3 leading-tight">
                   Centro de<br/>Cómputo
                 </h3>
-                <div className="w-12 h-1 bg-[#E6AC09] mb-4 transition-all duration-500 group-hover:w-24"></div>
+                <div className="w-24 h-1 bg-gold mb-4 origin-left scale-x-50 transition-transform duration-500 group-hover:scale-x-100"></div>
                 <p className="text-white/80 text-sm md:text-base leading-relaxed max-w-lg">
                   Laboratorio tecnológico moderno con equipos de última generación, donde nuestros estudiantes desarrollan competencias digitales esenciales.
                 </p>

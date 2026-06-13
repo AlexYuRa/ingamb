@@ -18,7 +18,7 @@ export default function MisionCard({ title, description, icon }) {
     >
       <div className="h-full relative bg-white border border-gray-100 rounded-2xl overflow-hidden p-8 flex flex-col shadow-lg hover:shadow-xl transition-shadow">
         {/* Acento superior */}
-        <div className="absolute left-0 top-0 right-0 h-1 bg-gradient-to-r from-[#12377B] to-[#E6AC09]" />
+        <div className="absolute left-0 top-0 right-0 h-1 bg-gradient-to-r from-primary to-gold" />
 
         {/* Ícono */}
         {icon && (
@@ -35,10 +35,10 @@ export default function MisionCard({ title, description, icon }) {
         )}
 
         {/* Línea naranja */}
-        <div className="w-8 h-0.5 bg-[#E6AC09] rounded-full mb-4" />
+        <div className="w-8 h-0.5 bg-gold rounded-full mb-4" />
 
         {/* Título */}
-        <h3 className="text-xl md:text-2xl font-display font-black text-[#12377B] mb-4 leading-tight">
+        <h3 className="text-xl md:text-2xl font-display font-black text-primary mb-4 leading-tight">
           {title}
         </h3>
 

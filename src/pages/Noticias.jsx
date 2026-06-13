@@ -32,12 +32,13 @@ export default function Noticias() {
                 <Link to={noticia.link} className="block h-full group">
                   <Card className="h-full flex flex-col p-0 overflow-hidden hover:shadow-lg transition-shadow">
                     {/* Franja superior */}
-                    <div className="h-1.5 bg-[#12377B] w-full" />
+                    <div className="h-1.5 bg-primary w-full" />
                     {/* Imagen */}
                     <div className="h-48 w-full overflow-hidden shrink-0">
                       <img
                         src={noticia.imagen}
                         alt={noticia.titulo}
+                        loading="lazy"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
@@ -51,13 +52,13 @@ export default function Noticias() {
                           {noticia.fechaFormateada}
                         </span>
                       </div>
-                      <h3 className="font-display font-bold text-[#12377B] text-base leading-snug mb-3 group-hover:text-[#E6AC09] transition-colors flex-1">
+                      <h3 className="font-display font-bold text-primary text-base leading-snug mb-3 group-hover:text-gold transition-colors flex-1">
                         {noticia.titulo}
                       </h3>
                       <p className="text-gray-600 text-sm leading-relaxed mb-4">
                         {noticia.resumen}
                       </p>
-                      <span className="mt-auto inline-flex items-center gap-1 text-[#E6AC09] text-sm font-bold group-hover:gap-2 transition-all">
+                      <span className="mt-auto inline-flex items-center gap-1 text-gold text-sm font-bold group-hover:gap-2 transition-all">
                         Leer más <ArrowRight className="w-3.5 h-3.5" />
                       </span>
                     </div>

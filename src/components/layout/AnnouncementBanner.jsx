@@ -43,7 +43,7 @@ export default function AnnouncementBanner() {
         animate={{ height: 'auto', opacity: 1 }}
         exit={{ height: 0, opacity: 0 }}
         transition={{ duration: 0.3 }}
-        className="bg-[#E6AC09] text-white overflow-hidden"
+        className="bg-gold text-white overflow-hidden"
       >
         <div className="container mx-auto px-4 md:px-8">
           <div className="flex items-center justify-between gap-3 py-2.5">
@@ -93,9 +93,12 @@ export default function AnnouncementBanner() {
                   <button
                     key={i}
                     onClick={() => setCurrentIdx(i)}
-                    className={`w-1.5 h-1.5 rounded-full transition-all ${i === currentIdx ? 'bg-white w-3' : 'bg-white/50'}`}
-                    aria-label={`Aviso ${i + 1}`}
-                  />
+                    className="p-1.5 flex items-center justify-center"
+                    aria-label={`Ir al aviso ${i + 1}`}
+                    aria-current={i === currentIdx ? 'true' : undefined}
+                  >
+                    <span className={`block h-1.5 rounded-full transition-all ${i === currentIdx ? 'bg-white w-3' : 'bg-white/50 w-1.5'}`} />
+                  </button>
                 ))}
               </div>
 

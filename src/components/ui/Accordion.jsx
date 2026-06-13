@@ -10,7 +10,7 @@ export function Accordion({ title, children, defaultOpen = false, className }) {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex justify-between items-center p-4 text-left focus:outline-none focus:bg-gray-50 hover:bg-gray-50 transition-colors"
+        className="w-full flex justify-between items-center p-4 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary focus:bg-gray-50 hover:bg-gray-50 transition-colors"
       >
         <span className="font-bold text-primary">{title}</span>
         <motion.span 
