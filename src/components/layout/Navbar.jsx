@@ -2,17 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
-import { Phone, Mail, Search, ChevronDown, Menu, X } from 'lucide-react';
+import { Phone, Mail, Search, ChevronDown, Menu, X, ExternalLink } from 'lucide-react';
 import logo from '../../assets/unt1.png';
 import Breadcrumbs from './Breadcrumbs';
 import AnnouncementBanner from './AnnouncementBanner';
-import { NAV_LINKS } from '../../constants/navigation';
+import { NAV_LINKS, expandNavLinks } from '../../constants/navigation';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [schoolLogoOk, setSchoolLogoOk] = useState(false);
+  // Sección con el mega-menú abierto (hover/foco). Solo para semántica ARIA:
+  // la visibilidad sigue siendo CSS (group-hover / group-focus-within).
+  const [openSection, setOpenSection] = useState(null);
   const location = useLocation();
 
   // Logo de la escuela (opcional): se carga desde public/logos/logo-escuela.png.
@@ -118,34 +121,74 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center bg-pucp-blue-dark mr-5">
-            {NAV_LINKS.map((link) => (
-              <div key={link.name} className="relative group h-full flex">
+            {NAV_LINKS.map((link, idx) => (
+              <div
+                key={link.name}
+                className="relative group h-full flex"
+                onMouseEnter={() => link.groups && setOpenSection(link.name)}
+                onMouseLeave={() => setOpenSection((s) => (s === link.name ? null : s))}
+                onFocus={() => link.groups && setOpenSection(link.name)}
+                onBlur={(e) => {
+                  if (!e.currentTarget.contains(e.relatedTarget)) {
+                    setOpenSection((s) => (s === link.name ? null : s));
+                  }
+                }}
+              >
                 <NavLink
                   to={link.path}
                   end={link.path === '/'}
+                  aria-haspopup={link.groups ? 'true' : undefined}
+                  aria-expanded={link.groups ? openSection === link.name : undefined}
                   className={({ isActive }) => clsx(
                   'font-body font-medium text-[16px] transition-colors flex items-center px-7 py-5 md:py-6',
                   isActive ? 'bg-gold text-blue-deep' : 'text-white hover:bg-white/10'
                   )}
                 >
                   {link.name}
-                  {link.sublinks && (
+                  {link.groups && (
                     <ChevronDown className="w-4 h-4 ml-1 opacity-70" />
                   )}
                 </NavLink>
-                
-                {/* Dropdown */}
-                {link.sublinks && (
-                  <div className="absolute top-full left-0 w-64 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity duration-200 z-50">
-                    <div className="flex flex-col">
-                      {link.sublinks.map((sublink) => (
-                        <Link
-                          key={sublink.name}
-                          to={sublink.path}
-                          className="block px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-pucp-blue-dark transition-colors border-b border-gray-100 last:border-b-0"
-                        >
-                          {sublink.name}
-                        </Link>
+
+                {/* Mega-menú agrupado por subcategorías. Mismo chrome que el
+                    desplegable original: cuadrado, shadow-lg, sin borde. Los de la
+                    mitad derecha se anclan a la derecha para no salirse de pantalla. */}
+                {link.groups && (
+                  <div className={clsx(
+                    'absolute top-full bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity duration-200 z-50',
+                    idx >= 3 ? 'right-0' : 'left-0'
+                  )}>
+                    <div className="flex flex-wrap gap-x-2 gap-y-4 p-4 max-w-[min(720px,90vw)]">
+                      {link.groups.map((grupo) => (
+                        <div key={grupo.label} className="min-w-[200px] flex-1">
+                          <p className="px-3 pb-2 mb-1 text-[11px] font-black uppercase tracking-wider text-gold border-b border-gray-100">
+                            {grupo.label}
+                          </p>
+                          <div className="flex flex-col">
+                            {expandNavLinks(grupo.items).map((item) =>
+                              item.external ? (
+                                <a
+                                  key={item.name}
+                                  href={item.path}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="flex items-center justify-between gap-2 px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-50 hover:text-pucp-blue-dark transition-colors"
+                                >
+                                  <span>{item.name}<span className="sr-only"> (abre en pestaña nueva)</span></span>
+                                  <ExternalLink className="w-3.5 h-3.5 opacity-50 shrink-0" />
+                                </a>
+                              ) : (
+                                <Link
+                                  key={item.name}
+                                  to={item.path}
+                                  className="block px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-50 hover:text-pucp-blue-dark transition-colors"
+                                >
+                                  {item.name}
+                                </Link>
+                              )
+                            )}
+                          </div>
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -188,16 +231,38 @@ export default function Navbar() {
                   >
                     {link.name}
                   </NavLink>
-                  {link.sublinks && (
-                    <div className="pl-4 flex flex-col mt-2 gap-2 border-l-2 border-accent">
-                      {link.sublinks.map((sublink) => (
-                        <Link
-                          key={sublink.name}
-                          to={sublink.path}
-                          className="text-sm text-gray-600 hover:text-primary py-1"
-                        >
-                          {sublink.name}
-                        </Link>
+                  {link.groups && (
+                    <div className="pl-3 flex flex-col mt-2 gap-3">
+                      {link.groups.map((grupo) => (
+                        <div key={grupo.label} className="flex flex-col">
+                          <p className="text-[10px] font-black uppercase tracking-wider text-gold mb-1">
+                            {grupo.label}
+                          </p>
+                          <div className="pl-3 flex flex-col gap-0.5">
+                            {expandNavLinks(grupo.items).map((item) =>
+                              item.external ? (
+                                <a
+                                  key={item.name}
+                                  href={item.path}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="flex items-center gap-1.5 text-sm text-gray-600 hover:text-primary py-2"
+                                >
+                                  {item.name}<span className="sr-only"> (abre en pestaña nueva)</span>
+                                  <ExternalLink className="w-3 h-3 opacity-50" />
+                                </a>
+                              ) : (
+                                <Link
+                                  key={item.name}
+                                  to={item.path}
+                                  className="text-sm text-gray-600 hover:text-primary py-2"
+                                >
+                                  {item.name}
+                                </Link>
+                              )
+                            )}
+                          </div>
+                        </div>
                       ))}
                     </div>
                   )}

@@ -60,8 +60,8 @@ export default function Inicio() {
   };
 
   const accesosRapidos = [
-    { titulo: "Plan de Estudios", descripcion: "Malla curricular actualizada por ciclos.", icono: BookOpen, link: "/academico/plan-estudios", imagen: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80" },
-    { titulo: "Plana Docente", descripcion: "Profesores e investigadores comprometidos.", icono: Users, link: "/autoridades/docentes", imagen: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80" },
+    { titulo: "Plan de Estudios", descripcion: "Malla curricular actualizada por ciclos.", icono: BookOpen, link: "/academico/malla-curricular", imagen: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80" },
+    { titulo: "Plana Docente", descripcion: "Profesores e investigadores comprometidos.", icono: Users, link: "/organizacion/docentes", imagen: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80" },
     { titulo: "Investigación", descripcion: "Líneas, proyectos y publicaciones activas.", icono: FlaskConical, link: "/investigacion/proyectos", imagen: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&q=80" },
     { titulo: "Grados y Títulos", descripcion: "Pasos y requisitos para tu titulación.", icono: GraduationCap, link: "/academico/titulacion", imagen: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80" },
     { titulo: "Colegios Aliados", descripcion: "Red de instituciones educativas socias.", icono: Handshake, link: "/nosotros/convenios-escuelas", imagen: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&q=80" },
@@ -141,7 +141,7 @@ export default function Inicio() {
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 justify-center md:justify-end">
-              <Link to="/academico/plan-estudios">
+              <Link to="/academico/malla-curricular">
                 <motion.button
                   whileHover={{ scale: 1.04, boxShadow: '0 0 32px rgba(230,172,9,0.5)' }}
                   whileTap={{ scale: 0.97 }}
@@ -151,7 +151,7 @@ export default function Inicio() {
                   Ver Plan de Estudios
                 </motion.button>
               </Link>
-              <Link to="/nosotros/mision-vision">
+              <Link to="/nosotros/mision">
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
@@ -211,11 +211,8 @@ export default function Inicio() {
               transition={{ duration: 0.6 }}
               className="flex flex-col"
             >
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-pucp-blue-dark uppercase mb-2">
-                Bienvenida de la <span className="text-gold">Rectora</span>
-              </h2>
-              <div className="w-16 h-1 bg-gold mb-6"></div>
-              
+              <SectionTitle title="Bienvenida de la **Rectora**" />
+
               <div className="text-gray-700 font-body space-y-4 leading-relaxed">
                 <p>
                   "Bienvenidos a la Escuela Profesional de Educación Primaria. Formamos
@@ -255,7 +252,7 @@ export default function Inicio() {
       <section className="py-16 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4 md:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
-            <SectionTitle title="Noticias y Actualidad" subtitle="Últimas novedades, eventos y comunicados de la Escuela." />
+            <SectionTitle title="Noticias y **Actualidad**" subtitle="Últimas novedades, eventos y comunicados de la Escuela." />
             <Link
               to="/noticias"
               className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-gold transition-colors whitespace-nowrap shrink-0"

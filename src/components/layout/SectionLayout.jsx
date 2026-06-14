@@ -3,7 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import PageWrapper from './PageWrapper';
 import PageHero from './PageHero';
 import SectionTabs from './SectionTabs';
-import { getSection } from '../../constants/navigation';
+import { getSection, getInternalItems } from '../../constants/navigation';
 
 const SITE_NAME = 'Educación Primaria · UNT';
 
@@ -16,7 +16,7 @@ const SITE_NAME = 'Educación Primaria · UNT';
 export default function SectionLayout({ title, subtitle, icon, basePath, breadcrumbs }) {
   const { pathname } = useLocation();
   const section = getSection(basePath);
-  const links = section?.sublinks ?? [];
+  const links = getInternalItems(section);
 
   // Título de documento propio por subsección (indexable, enlazable). En la raíz
   // de la sección refleja la primera subsección (la que se muestra por defecto).

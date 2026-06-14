@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { GraduationCap, Award, Info, ChevronRight, ExternalLink, BookOpen, Star } from 'lucide-react';
 import useHeaderHeight from '../../hooks/useHeaderHeight';
+import { ADMISION_GROUPS } from '../../constants/navigation';
 
 /**
  * Panel lateral deslizante (slide-out drawer) con pestaña "INGRESO".
@@ -123,6 +124,42 @@ export default function FloatingAdmissions() {
               </li>
             </ul>
           </div>
+
+          {/* Admisión: enlaces (guía, estadísticas externas, resoluciones) */}
+          {ADMISION_GROUPS.map((grupo) => (
+            <div key={grupo.label} className="pt-2">
+              <h4 className="text-[11px] font-black uppercase tracking-wider text-gold mb-2">
+                {grupo.label}
+              </h4>
+              <div className="flex flex-col gap-1">
+                {grupo.items.map((item) =>
+                  item.external ? (
+                    <a
+                      key={item.name}
+                      href={item.path}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setOpen(false)}
+                      className="flex items-center justify-between gap-2 text-[13px] text-white/90 hover:text-white py-2 transition-colors"
+                    >
+                      <span>{item.name}<span className="sr-only"> (abre en pestaña nueva)</span></span>
+                      <ExternalLink className="w-3.5 h-3.5 opacity-60 shrink-0" />
+                    </a>
+                  ) : (
+                    <Link
+                      key={item.name}
+                      to={item.path}
+                      onClick={() => setOpen(false)}
+                      className="flex items-center gap-1.5 text-[13px] text-white/90 hover:text-white py-2 transition-colors"
+                    >
+                      <ChevronRight className="w-3.5 h-3.5 shrink-0" />
+                      <span>{item.name}</span>
+                    </Link>
+                  )
+                )}
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className="mt-4 pt-4 border-t border-white/20 shrink-0">
@@ -147,7 +184,7 @@ export default function FloatingAdmissions() {
       >
         <GraduationCap className="w-5 h-5 md:w-7 md:h-7" />
         <span className="[writing-mode:vertical-rl] rotate-180 font-bold tracking-[0.2em] text-[18px] md:text-[26px]">
-          INGRESO
+          ADMISIÓN
         </span>
       </button>
     </div>

@@ -7,7 +7,7 @@ export default function Historia() {
   return (
     <div className="bg-white py-16 md:py-20">
       <div className="container mx-auto px-4 md:px-8">
-        <SectionTitle title="Nuestra Historia" center subtitle="Más de cinco décadas formando educadores de excelencia." />
+        <SectionTitle title="Nuestra **Historia**" center subtitle="Más de cinco décadas formando educadores de excelencia." />
         
         <div className="max-w-3xl mx-auto mt-12 mb-16 text-center">
           <p className="text-gray-600 font-body text-lg leading-relaxed bg-light p-8 rounded-xl border border-gray-100 shadow-sm">
@@ -19,7 +19,7 @@ export default function Historia() {
         </div>
 
         <div className="max-w-4xl mx-auto mt-16">
-          <h3 className="text-2xl font-display font-bold text-center text-primary mb-12">Línea de Tiempo Histórica</h3>
+          <h3 className="text-2xl md:text-3xl font-display font-bold text-center text-primary mb-12">Línea de Tiempo <span className="text-gold">Histórica</span></h3>
           <HitoTimeline hitos={historia.hitos} />
         </div>
       </div>

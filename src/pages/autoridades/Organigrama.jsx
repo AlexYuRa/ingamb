@@ -7,7 +7,7 @@ export default function Organigrama() {
   return (
     <div className="bg-white py-16 md:py-20 overflow-hidden">
       <div className="container mx-auto px-4 md:px-8">
-        <SectionTitle title="Organigrama Estructural" center subtitle="Estructura jerárquica y organizacional de la Escuela Profesional." />
+        <SectionTitle title="Organigrama **Estructural**" center subtitle="Estructura jerárquica y organizacional de la Escuela Profesional." />
         
         <div className="mt-16 overflow-x-auto pb-12 hide-scrollbar">
           <div className="min-w-[800px] flex justify-center py-4">

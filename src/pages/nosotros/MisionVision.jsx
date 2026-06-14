@@ -18,16 +18,20 @@ export default function MisionVision() {
             center
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 max-w-6xl mx-auto">
-            <MisionCard
-              title="Nuestra Misión"
-              description={mision}
-              icon={<Target className="w-8 h-8 text-gold" />}
-            />
-            <MisionCard
-              title="Nuestra Visión"
-              description={vision}
-              icon={<Telescope className="w-8 h-8 text-gold" />}
-            />
+            <div id="mision" className="scroll-mt-[180px]">
+              <MisionCard
+                title="Nuestra Misión"
+                description={mision}
+                icon={<Target className="w-8 h-8 text-gold" />}
+              />
+            </div>
+            <div id="vision" className="scroll-mt-[180px]">
+              <MisionCard
+                title="Nuestra Visión"
+                description={vision}
+                icon={<Telescope className="w-8 h-8 text-gold" />}
+              />
+            </div>
           </div>
         </div>
       </div>

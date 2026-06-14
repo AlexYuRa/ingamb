@@ -29,7 +29,13 @@ export default function SectionTabs({ links }) {
       className="sticky z-30 bg-white border-b border-gray-200 shadow-sm"
       style={{ top: headerHeight }}
     >
-      <div className="container mx-auto px-4 md:px-8">
+      <div className="container mx-auto px-4 md:px-8 relative">
+        {/* Fade en el borde derecho: pista de que hay más pestañas al deslizar
+            (solo en móvil, donde es probable el desbordamiento). */}
+        <div
+          aria-hidden="true"
+          className="md:hidden pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-white to-transparent z-10"
+        />
         <nav
           className="flex overflow-x-auto hide-scrollbar gap-1"
           aria-label="Navegación de la sección"

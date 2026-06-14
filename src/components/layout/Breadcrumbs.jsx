@@ -1,14 +1,14 @@
 import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
-import { NAV_LINKS } from '../../constants/navigation';
+import { NAV_LINKS, flattenItems } from '../../constants/navigation';
 
 // Nombre "extendido" de cada sección para la miga de pan (puede diferir del label
 // corto del menú, p. ej. "Nosotros" → "Sobre Nosotros").
 const sectionLabels = {
   '/nosotros': 'Sobre Nosotros',
+  '/organizacion': 'Organización',
   '/academico': 'Académico',
-  '/autoridades': 'Autoridades',
   '/investigacion': 'Investigación',
   '/contacto': 'Contacto',
 };
@@ -20,7 +20,7 @@ export default function Breadcrumbs() {
 
   const basePath = `/${pathname.split('/')[1]}`;
   const section = NAV_LINKS.find((link) => link.path === basePath);
-  const subsection = section?.sublinks?.find((sub) => sub.path === pathname);
+  const subsection = flattenItems(section?.groups).find((sub) => sub.path === pathname);
 
   const sectionName =
     sectionLabels[basePath] ||

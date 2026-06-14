@@ -94,12 +94,12 @@ export default function Footer() {
               </h3>
               <ul className="space-y-2.5">
                 {[
-                  { label: 'Misión y Visión', to: '/nosotros/mision-vision' },
+                  { label: 'Misión y Visión', to: '/nosotros/mision' },
                   { label: 'Historia de la Escuela', to: '/nosotros/historia' },
-                  { label: 'Plan de Estudios', to: '/academico/plan-estudios' },
-                  { label: 'Perfil del Egresado', to: '/academico/perfil-egresado' },
-                  { label: 'Titulación y Grados', to: '/academico/titulacion' },
-                  { label: 'Plana Docente', to: '/autoridades/docentes' },
+                  { label: 'Plan de Estudios', to: '/academico/malla-curricular' },
+                  { label: 'Perfil del Egresado', to: '/nosotros/perfil-egreso' },
+                  { label: 'Líneas de Investigación', to: '/investigacion/lineas' },
+                  { label: 'Plana Docente', to: '/organizacion/docentes' },
                 ].map(({ label, to }) => (
                   <li key={to}>
                     <Link
