@@ -1,9 +1,10 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Home } from 'lucide-react';
 
 export default function PageHero({ title, subtitle, breadcrumbs = [], icon: Icon }) {
+  const prefersReducedMotion = useReducedMotion();
   return (
     <div className="relative bg-primary text-white overflow-hidden">
       {/* ── Fondo: patrón de puntos + formas ── */}
@@ -26,9 +27,9 @@ export default function PageHero({ title, subtitle, breadcrumbs = [], icon: Icon
 
         {/* Círculos decorativos */}
         <motion.div
-          animate={{ scale: [1, 1.08, 1], opacity: [0.08, 0.14, 0.08] }}
-          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -top-16 -right-16 w-80 h-80 rounded-full border-2 border-gold/30"
+          animate={prefersReducedMotion ? undefined : { scale: [1, 1.08, 1], opacity: [0.08, 0.14, 0.08] }}
+          transition={prefersReducedMotion ? undefined : { duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -top-16 -right-16 w-80 h-80 rounded-full border-2 border-gold/30 opacity-10"
         />
         <div className="absolute top-4 right-10 w-16 h-16 rounded-full bg-gold/15" />
         <div className="absolute bottom-2 left-1/3 w-8 h-8 rounded-full bg-white/10" />

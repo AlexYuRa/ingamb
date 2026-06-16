@@ -93,11 +93,11 @@ export default function Navbar() {
               <img
                 src={logo}
                 alt="Universidad Nacional de Trujillo"
-                className="h-24 md:h-[120px] w-auto object-contain drop-shadow-md"
+                className="h-16 sm:h-20 md:h-[120px] w-auto object-contain drop-shadow-md"
               />
               {/* Separador (solo si existe el logo de la escuela) */}
               {schoolLogoOk && (
-                <span className="block w-px h-14 md:h-20 bg-gray-300" aria-hidden="true" />
+                <span className="block w-px h-10 sm:h-12 md:h-20 bg-gray-300" aria-hidden="true" />
               )}
               {/* Logo de la Escuela: colocar la imagen en public/logos/logo-escuela.png.
                   Si no existe, no se muestra (ni el logo ni el separador). */}
@@ -107,13 +107,13 @@ export default function Navbar() {
                 onLoad={() => setSchoolLogoOk(true)}
                 onError={() => setSchoolLogoOk(false)}
                 className={clsx(
-                  'h-24 md:h-[120px] w-auto object-contain drop-shadow-md',
+                  'h-16 sm:h-20 md:h-[120px] w-auto object-contain drop-shadow-md',
                   !schoolLogoOk && 'hidden'
                 )}
               />
             </div>
             <div className="flex flex-col ml-1 md:ml-3">
-              <span className="font-display font-black tracking-tight leading-[0.95] text-xl md:text-3xl flex flex-col">
+              <span className="font-display font-black tracking-tight leading-[0.95] text-base sm:text-lg md:text-3xl flex flex-col">
                 <span className="text-pucp-blue-dark">Ingeniería</span>
                 <span className="text-gold">Ambiental</span>
               </span>

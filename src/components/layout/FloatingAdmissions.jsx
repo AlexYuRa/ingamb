@@ -140,7 +140,7 @@ export default function FloatingAdmissions() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setOpen(false)}
-                      className="flex items-center justify-between gap-2 text-[13px] text-white/90 hover:text-white py-2 transition-colors"
+                      className="flex items-center justify-between gap-2 text-[13px] text-white/90 hover:text-white py-2.5 transition-colors"
                     >
                       <span>{item.name}<span className="sr-only"> (abre en pestaña nueva)</span></span>
                       <ExternalLink className="w-3.5 h-3.5 opacity-60 shrink-0" />
@@ -150,7 +150,7 @@ export default function FloatingAdmissions() {
                       key={item.name}
                       to={item.path}
                       onClick={() => setOpen(false)}
-                      className="flex items-center gap-1.5 text-[13px] text-white/90 hover:text-white py-2 transition-colors"
+                      className="flex items-center gap-1.5 text-[13px] text-white/90 hover:text-white py-2.5 transition-colors"
                     >
                       <ChevronRight className="w-3.5 h-3.5 shrink-0" />
                       <span>{item.name}</span>

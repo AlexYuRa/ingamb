@@ -45,11 +45,28 @@ export default function Inicio() {
     frontImage3,
   ];
   const [heroIdx, setHeroIdx] = useState(0);
+  // Carga progresiva: solo pedimos las imágenes ya mostradas + la siguiente.
+  // Así la primera pinta rápido en móvil (mejor LCP) y las demás no compiten
+  // con el render inicial; cada una llega antes de su turno en el crossfade.
+  const [loadedImgs, setLoadedImgs] = useState(() => new Set([0, 1 % heroImages.length]));
+
   useEffect(() => {
     if (heroImages.length < 2) return;
+    // Respeta la preferencia del sistema de reducir movimiento: sin auto-rotación.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const id = setInterval(() => setHeroIdx((i) => (i + 1) % heroImages.length), 6000);
     return () => clearInterval(id);
   }, [heroImages.length]);
+
+  useEffect(() => {
+    setLoadedImgs((prev) => {
+      if (prev.has(heroIdx) && prev.has((heroIdx + 1) % heroImages.length)) return prev;
+      const next = new Set(prev);
+      next.add(heroIdx);
+      next.add((heroIdx + 1) % heroImages.length);
+      return next;
+    });
+  }, [heroIdx, heroImages.length]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -91,7 +108,7 @@ export default function Inicio() {
             key={i}
             aria-hidden="true"
             className="absolute inset-0 z-0 bg-cover bg-center transition-opacity duration-[1500ms] ease-in-out"
-            style={{ backgroundImage: `url(${img})`, opacity: i === heroIdx ? 1 : 0 }}
+            style={{ backgroundImage: loadedImgs.has(i) ? `url(${img})` : undefined, opacity: i === heroIdx ? 1 : 0 }}
           />
         ))}
 
