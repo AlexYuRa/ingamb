@@ -6,7 +6,7 @@ import { FileText } from 'lucide-react';
 
 export default function Resoluciones() {
   useEffect(() => {
-    document.title = 'Resoluciones | Admisión | Educación Primaria · UNT';
+    document.title = 'Resoluciones | Admisión | Ingeniería Ambiental · UNT';
   }, []);
 
   return (

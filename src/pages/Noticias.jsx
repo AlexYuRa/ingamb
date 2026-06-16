@@ -12,7 +12,7 @@ export default function Noticias() {
     <PageWrapper>
       <PageHero
         title="Noticias y Actualidad"
-        subtitle="Eventos, convocatorias y logros de la Escuela Profesional de Educación Primaria."
+        subtitle="Eventos, convocatorias y logros de la Escuela Profesional de Ingeniería Ambiental."
         icon={Newspaper}
         breadcrumbs={[{ label: 'Noticias' }]}
       />

@@ -49,7 +49,7 @@ export default function FloatingAdmissions() {
         </div>
 
         <p className="text-sm md:text-base leading-tight mb-4 text-white/95 shrink-0">
-          Descubre las modalidades de ingreso para formar parte de la Escuela de Educación Primaria.
+          Descubre las modalidades de ingreso para formar parte de la Escuela de Ingeniería Ambiental.
         </p>
 
         <div className="flex-1 overflow-y-auto pr-2 space-y-3 custom-scrollbar">

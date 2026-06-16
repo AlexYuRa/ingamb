@@ -18,7 +18,6 @@ import Historia from '../pages/nosotros/Historia';
 import MisionVision from '../pages/nosotros/MisionVision'; // agrupa Misión + Visión (#mision / #vision)
 import Objetivos from '../pages/nosotros/Objetivos';        // agrupa educativos + académicos
 import Perfiles from '../pages/nosotros/Perfiles';          // agrupa ingreso + egreso
-import ConveniosEscuelas from '../pages/nosotros/ConveniosEscuelas';
 
 // Módulo: Organización
 import OrganizacionIndex from '../pages/organizacion/index';
@@ -65,8 +64,6 @@ export default function AppRouter() {
               <Route path="mision-vision" element={<MisionVision />} />
               <Route path="objetivos" element={<Objetivos />} />
               <Route path="perfiles" element={<Perfiles />} />
-              {/* Ruta conservada (Colegios Aliados), fuera del menú */}
-              <Route path="convenios-escuelas" element={<ConveniosEscuelas />} />
             </Route>
 
             {/* ── Organización ── */}

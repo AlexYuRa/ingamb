@@ -59,15 +59,15 @@ export default function Footer() {
                 <img src={logo} alt="Logo UNT" loading="lazy" className="h-14 w-auto object-contain drop-shadow brightness-200" />
                 <div className="flex flex-col">
                   <span className="font-display font-bold leading-tight text-base text-white">
-                    Educación Primaria
+                    Ingeniería Ambiental
                   </span>
                   <span className="text-white/60 text-xs uppercase tracking-wider">
-                    UNT – Fac. Educación
+                    UNT · Fac. Ingeniería
                   </span>
                 </div>
               </div>
               <p className="text-gray-300 font-body text-sm leading-relaxed mb-6">
-                Formando educadores de excelencia con vocación, liderazgo y compromiso social para transformar la educación peruana.
+                Formando ingenieros ambientales de excelencia, con rigor científico y compromiso con la sostenibilidad del país.
               </p>
               {/* Social icons */}
               <div className="flex items-center gap-3 flex-wrap">
@@ -191,7 +191,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="bg-black/20 py-4">
         <div className="container mx-auto px-4 md:px-8 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-gray-300">
-          <p>© {currentYear} Escuela Profesional de Educación Primaria — UNT. Todos los derechos reservados.</p>
+          <p>© {currentYear} Escuela Profesional de Ingeniería Ambiental · UNT. Todos los derechos reservados.</p>
           <p>Ley de Transparencia N° 27806 — Acceso a la Información Pública</p>
         </div>
       </div>

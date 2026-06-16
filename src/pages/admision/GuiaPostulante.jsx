@@ -6,14 +6,14 @@ import { GraduationCap } from 'lucide-react';
 
 export default function GuiaPostulante() {
   useEffect(() => {
-    document.title = 'Guía del postulante | Admisión | Educación Primaria · UNT';
+    document.title = 'Guía del postulante | Admisión | Ingeniería Ambiental · UNT';
   }, []);
 
   return (
     <PageWrapper>
       <PageHero
         title="Guía del postulante"
-        subtitle="Todo lo que necesitas saber para postular a la Escuela de Educación Primaria."
+        subtitle="Todo lo que necesitas saber para postular a la Escuela de Ingeniería Ambiental."
         icon={GraduationCap}
         breadcrumbs={[{ label: 'Admisión' }, { label: 'Guía del postulante' }]}
       />

@@ -5,7 +5,7 @@ import PageHero from './PageHero';
 import SectionTabs from './SectionTabs';
 import { getSection, getInternalItems } from '../../constants/navigation';
 
-const SITE_NAME = 'Educación Primaria · UNT';
+const SITE_NAME = 'Ingeniería Ambiental · UNT';
 
 /**
  * Layout COMPARTIDO de una sección: cabecera (banner) + barra de pestañas, ambos

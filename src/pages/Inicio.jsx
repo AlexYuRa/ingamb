@@ -6,7 +6,9 @@ import { SectionTitle } from '../components/ui/SectionTitle';
 import { Card } from '../components/ui/Card';
 import { BookOpen, Users, FlaskConical, GraduationCap, Handshake, ArrowRight, Calendar } from 'lucide-react';
 import { Button } from '../components/ui/Button';
-import frontImage from '../assets/frontunt.webp';
+import frontImage from '../assets/front_ingAmbi.webp';
+import frontImage2 from '../assets/front_ingAmbi1.webp';
+import frontImage3 from '../assets/frontunt.webp';
 import { noticias } from '../constants/noticias';
 import { director } from '../constants/autoridades';
 import useHeaderHeight from '../hooks/useHeaderHeight';
@@ -36,12 +38,11 @@ export default function Inicio() {
   }, []);
 
   // Carrusel del hero (máx. 3 imágenes): crossfade suave entre fondos.
-  // Reemplaza la 1ª (frontunt.webp) y agrega/quita placeholders cuando tengas
-  // tus fotos definitivas (déjalas en src/assets e impórtalas como frontImage).
+  // Fotos de la Escuela de Ingeniería Ambiental (src/assets).
   const heroImages = [
     frontImage,
-    'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1920&q=70',
-    'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=1920&q=70',
+    frontImage2,
+    frontImage3,
   ];
   const [heroIdx, setHeroIdx] = useState(0);
   useEffect(() => {
@@ -64,14 +65,14 @@ export default function Inicio() {
     { titulo: "Plana Docente", descripcion: "Profesores e investigadores comprometidos.", icono: Users, link: "/organizacion/docentes", imagen: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80" },
     { titulo: "Investigación", descripcion: "Líneas, proyectos y publicaciones activas.", icono: FlaskConical, link: "/investigacion/proyectos", imagen: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&q=80" },
     { titulo: "Grados y Títulos", descripcion: "Pasos y requisitos para tu titulación.", icono: GraduationCap, link: "/academico/titulacion", imagen: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80" },
-    { titulo: "Colegios Aliados", descripcion: "Red de instituciones educativas socias.", icono: Handshake, link: "/nosotros/convenios-escuelas", imagen: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&q=80" },
+    { titulo: "Convenios", descripcion: "Alianzas con entidades del sector ambiental.", icono: Handshake, link: "/academico/convenios", imagen: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=600&q=80" },
   ];
 
   const cifras = [
-    { numero: "+50", etiqueta: "Años formando maestros", sub: "de trayectoria ininterrumpida" },
-    { numero: "2500+", etiqueta: "Egresados en todo el país", sub: "transformando la educación" },
-    { numero: "100%", etiqueta: "Malla actualizada", sub: "al currículo nacional 2025" },
-    { numero: "SINEACE", etiqueta: "Acreditación de calidad", sub: "reconocimiento oficial" },
+    { numero: "+15", etiqueta: "Años formando ingenieros", sub: "de trayectoria ininterrumpida" },
+    { numero: "800+", etiqueta: "Egresados a nivel nacional", sub: "aportando a la sostenibilidad" },
+    { numero: "100%", etiqueta: "Malla actualizada", sub: "con enfoque en sostenibilidad" },
+    { numero: "SINEACE", etiqueta: "En proceso de acreditación", sub: "calidad educativa" },
   ];
 
   return (
@@ -128,16 +129,16 @@ export default function Inicio() {
               className="font-display font-black leading-none mb-3 text-white"
               style={{ fontSize: 'clamp(3rem, 8vw, 6rem)', textShadow: '0 8px 32px rgba(0,0,0,0.4)' }}
             >
-              Educación<br />
-              <span style={{ color: '#E6AC09' }}>Primaria</span>
+              Ingeniería<br />
+              <span style={{ color: '#E6AC09' }}>Ambiental</span>
             </motion.h1>
 
             <motion.p
               variants={itemVariants}
               className="text-lg md:text-xl lg:text-2xl text-white/85 mb-8 font-body leading-relaxed"
             >
-              Formamos maestros de primaria en la Universidad Nacional de Trujillo,
-              con rigor académico y compromiso con la calidad educativa.
+              Formamos ingenieros ambientales en la Universidad Nacional de Trujillo,
+              con rigor científico y compromiso con la sostenibilidad.
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 justify-center md:justify-end">
@@ -215,13 +216,13 @@ export default function Inicio() {
 
               <div className="text-gray-700 font-body space-y-4 leading-relaxed">
                 <p>
-                  "Bienvenidos a la Escuela Profesional de Educación Primaria. Formamos
-                  maestros capaces de guiar los primeros pasos del aprendizaje con vocación,
-                  rigor académico y compromiso social. Te invitamos a conocer un programa
-                  que cuida cada detalle de tu formación."
+                  "Bienvenidos a la Escuela Profesional de Ingeniería Ambiental. Formamos
+                  ingenieros capaces de prevenir y resolver los problemas ambientales con
+                  rigor científico y compromiso con la sostenibilidad. Te invitamos a conocer
+                  un programa que cuida cada detalle de tu formación."
                 </p>
                 <footer className="text-sm text-gray-600 not-italic font-semibold">
-                  — Karen Valderrama, Rectora de la Universidad Nacional de Trujillo
+                  Karen Valderrama, Rectora de la Universidad Nacional de Trujillo
                 </footer>
               </div>
             </motion.div>
@@ -238,7 +239,7 @@ export default function Inicio() {
               <iframe 
                 className="absolute top-0 left-0 w-full h-full"
                 src="https://www.youtube.com/embed/6mmdvUizSbk?start=7" 
-                title="Video Institucional Educación Primaria UNT" 
+                title="Video Institucional Ingeniería Ambiental UNT"
                 frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowFullScreen
@@ -406,14 +407,14 @@ export default function Inicio() {
               </div>
               <div className="relative z-10 p-8 md:p-10 w-full transform group-hover:-translate-y-2 transition-transform duration-500">
                 <span className="inline-block px-3.5 py-1.5 bg-gold text-blue-deep text-[10px] font-black tracking-widest uppercase rounded-md mb-4 shadow-lg">
-                  Aula Principal
+                  Laboratorio
                 </span>
                 <h3 className="text-2xl md:text-4xl font-display font-black text-white mb-3 leading-tight">
-                  Módulo de Estimulación Temprana
+                  Laboratorio de Calidad de Agua
                 </h3>
                 <div className="w-24 h-1 bg-gold mb-4 origin-left scale-x-50 transition-transform duration-500 group-hover:scale-x-100"></div>
                 <p className="text-white/80 text-sm md:text-base leading-relaxed max-w-lg">
-                  Un espacio especializado y equipado con materiales didácticos de vanguardia para potenciar el desarrollo cognitivo y psicomotriz en la primera infancia.
+                  Espacio equipado con instrumentación para el análisis físico, químico y biológico del agua, base para el monitoreo y tratamiento de los recursos hídricos.
                 </p>
               </div>
             </motion.div>
@@ -441,11 +442,11 @@ export default function Inicio() {
                   Laboratorio
                 </span>
                 <h3 className="text-2xl md:text-4xl font-display font-black text-white mb-3 leading-tight">
-                  Centro de<br/>Cómputo
+                  Monitoreo de<br/>Calidad del Aire
                 </h3>
                 <div className="w-24 h-1 bg-gold mb-4 origin-left scale-x-50 transition-transform duration-500 group-hover:scale-x-100"></div>
                 <p className="text-white/80 text-sm md:text-base leading-relaxed max-w-lg">
-                  Laboratorio tecnológico moderno con equipos de última generación, donde nuestros estudiantes desarrollan competencias digitales esenciales.
+                  Laboratorio con equipos para medir material particulado y gases contaminantes, donde los estudiantes desarrollan competencias en gestión de la calidad del aire.
                 </p>
               </div>
             </motion.div>

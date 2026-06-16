@@ -1,91 +1,91 @@
 // Plana docente. Cada docente:
-//   - grado: el cargo/grado académico (Doctora, Magíster, Licenciado…)
+//   - grado: el cargo/grado académico (Doctor, Magíster, Ingeniero…)
 //   - cursoPrincipal: el curso/área principal que aparece en el FRENTE de la card
 //   - especialidades: lista que aparece al voltear la card (reverso). Agrega 2-3 por docente.
 //   - foto: ruta de la foto o null (muestra silueta placeholder)
 export const docentes = [
   {
-    nombre: "Dra. María Elena Vargas Cárdenas",
-    grado: "Doctora",
-    cursoPrincipal: "Gestión Educativa y Políticas Públicas",
-    especialidades: ["Gestión Educativa y Políticas Públicas"],
-    foto: null
-  },
-  {
-    nombre: "Mg. Roberto Carlos Mendoza",
-    grado: "Magíster",
-    cursoPrincipal: "Didáctica de la Matemática",
-    especialidades: ["Didáctica de la Matemática"],
-    foto: null
-  },
-  {
-    nombre: "Dra. Patricia Salinas",
-    grado: "Doctora",
-    cursoPrincipal: "Metodología de la Investigación",
-    especialidades: ["Metodología de la Investigación"],
-    foto: null
-  },
-  {
-    nombre: "Mg. Luis Fernando Gómez",
-    grado: "Magíster",
-    cursoPrincipal: "Evaluación Educativa",
-    especialidades: ["Evaluación Educativa"],
-    foto: null
-  },
-  {
-    nombre: "Dra. Carmen Rosa Jiménez",
-    grado: "Doctora",
-    cursoPrincipal: "Psicología del Aprendizaje",
-    especialidades: ["Psicología del Aprendizaje"],
-    foto: null
-  },
-  {
-    nombre: "Lic. Arturo Peralta Ruiz",
-    grado: "Licenciado",
-    cursoPrincipal: "Didáctica de las Ciencias Naturales",
-    especialidades: ["Didáctica de las Ciencias Naturales"],
-    foto: null
-  },
-  {
-    nombre: "Mg. Silvia Condori",
-    grado: "Magíster",
-    cursoPrincipal: "Educación Inclusiva y Diversidad",
-    especialidades: ["Educación Inclusiva y Diversidad"],
-    foto: null
-  },
-  {
-    nombre: "Dr. Jorge Villanueva",
+    nombre: "Dr. Ing. Carlos Alberto Mendoza Ríos",
     grado: "Doctor",
-    cursoPrincipal: "Tecnologías Educativas e Innovación",
-    especialidades: ["Tecnologías Educativas e Innovación"],
+    cursoPrincipal: "Gestión de Recursos Hídricos",
+    especialidades: ["Tratamiento de aguas residuales", "Hidrología", "Calidad del agua"],
     foto: null
   },
   {
-    nombre: "Mg. Rosaura Montes",
-    grado: "Magíster",
-    cursoPrincipal: "Desarrollo Psicomotriz",
-    especialidades: ["Desarrollo Psicomotriz"],
+    nombre: "Dra. Ing. Patricia Salinas Vega",
+    grado: "Doctora",
+    cursoPrincipal: "Calidad del Aire y Cambio Climático",
+    especialidades: ["Contaminación atmosférica", "Cambio climático", "Modelamiento de dispersión"],
     foto: null
   },
   {
-    nombre: "Dr. Hernán Torres",
+    nombre: "Dr. Ing. Jorge Villanueva Castro",
     grado: "Doctor",
-    cursoPrincipal: "Historia y Ciudadanía",
-    especialidades: ["Historia y Ciudadanía"],
+    cursoPrincipal: "Gestión de Residuos Sólidos",
+    especialidades: ["Economía circular", "Valorización de residuos", "Rellenos sanitarios"],
     foto: null
   },
   {
-    nombre: "Lic. Andrea Cáceres",
-    grado: "Licenciada",
-    cursoPrincipal: "Didáctica de la Comunicación y Literatura",
-    especialidades: ["Didáctica de la Comunicación y Literatura"],
-    foto: null
-  },
-  {
-    nombre: "Mg. Francisco Paredes",
+    nombre: "Mg. Ing. Roberto Carlos Salazar",
     grado: "Magíster",
-    cursoPrincipal: "Arte, Música y Creatividad",
-    especialidades: ["Arte, Música y Creatividad"],
+    cursoPrincipal: "Evaluación de Impacto Ambiental",
+    especialidades: ["Estudios de impacto ambiental", "Planes de manejo ambiental"],
+    foto: null
+  },
+  {
+    nombre: "Dra. Ing. Carmen Rosa Jiménez",
+    grado: "Doctora",
+    cursoPrincipal: "Química Ambiental",
+    especialidades: ["Análisis instrumental", "Monitoreo de contaminantes"],
+    foto: null
+  },
+  {
+    nombre: "Mg. Ing. Silvia Condori Mamani",
+    grado: "Magíster",
+    cursoPrincipal: "Microbiología Ambiental",
+    especialidades: ["Biorremediación", "Microbiología sanitaria"],
+    foto: null
+  },
+  {
+    nombre: "Dr. Ing. Hernán Torres Aliaga",
+    grado: "Doctor",
+    cursoPrincipal: "Tratamiento de Aguas Residuales",
+    especialidades: ["Diseño de plantas de tratamiento", "Operaciones unitarias"],
+    foto: null
+  },
+  {
+    nombre: "Mg. Ing. Andrea Cáceres Ruiz",
+    grado: "Magíster",
+    cursoPrincipal: "Sistemas de Información Geográfica",
+    especialidades: ["SIG aplicado al ambiente", "Teledetección", "Ordenamiento territorial"],
+    foto: null
+  },
+  {
+    nombre: "Dr. Ing. Francisco Paredes León",
+    grado: "Doctor",
+    cursoPrincipal: "Energías Renovables",
+    especialidades: ["Energía solar y eólica", "Tecnologías limpias"],
+    foto: null
+  },
+  {
+    nombre: "Mg. Ing. Rosaura Montes Díaz",
+    grado: "Magíster",
+    cursoPrincipal: "Edafología y Remediación de Suelos",
+    especialidades: ["Remediación de suelos", "Manejo de suelos contaminados"],
+    foto: null
+  },
+  {
+    nombre: "Dr. Ing. Arturo Peralta Quispe",
+    grado: "Doctor",
+    cursoPrincipal: "Sistemas de Gestión Ambiental",
+    especialidades: ["ISO 14001", "Auditoría ambiental", "Producción más limpia"],
+    foto: null
+  },
+  {
+    nombre: "Mg. Ing. Lucía Fernández Soto",
+    grado: "Magíster",
+    cursoPrincipal: "Legislación y Economía Ambiental",
+    especialidades: ["Normativa ambiental", "Economía ambiental"],
     foto: null
   }
 ];

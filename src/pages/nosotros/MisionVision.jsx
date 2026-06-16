@@ -14,7 +14,7 @@ export default function MisionVision() {
         <div className="container mx-auto px-4 md:px-8">
           <SectionTitle
             title="Misión y **Visión**"
-            subtitle="Los propósitos que guían nuestro camino hacia la excelencia educativa."
+            subtitle="Los propósitos que guían nuestro camino hacia la excelencia y la sostenibilidad."
             center
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 max-w-6xl mx-auto">

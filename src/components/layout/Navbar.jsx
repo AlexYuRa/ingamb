@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
 import { Phone, Mail, Search, ChevronDown, Menu, X, ExternalLink } from 'lucide-react';
 import logo from '../../assets/unt1.png';
+import logoEscuela from '../../assets/logo_ingAmb.png';
 import Breadcrumbs from './Breadcrumbs';
 import AnnouncementBanner from './AnnouncementBanner';
 import { NAV_LINKS, expandNavLinks } from '../../constants/navigation';
@@ -18,9 +19,8 @@ export default function Navbar() {
   const [openSection, setOpenSection] = useState(null);
   const location = useLocation();
 
-  // Logo de la escuela (opcional): se carga desde public/logos/logo-escuela.png.
-  // Respeta la ruta base de Vite en cualquier entorno de despliegue.
-  const schoolLogoUrl = `${import.meta.env.BASE_URL}logos/logo-escuela.png`;
+  // Logo de la Escuela de Ingeniería Ambiental (src/assets/logo_ingAmb.png).
+  const schoolLogoUrl = logoEscuela;
 
   const handleSearch = (e) => {
     if (e.key === 'Enter' || e.type === 'click') {
@@ -103,7 +103,7 @@ export default function Navbar() {
                   Si no existe, no se muestra (ni el logo ni el separador). */}
               <img
                 src={schoolLogoUrl}
-                alt="Escuela Profesional de Educación Primaria"
+                alt="Escuela Profesional de Ingeniería Ambiental"
                 onLoad={() => setSchoolLogoOk(true)}
                 onError={() => setSchoolLogoOk(false)}
                 className={clsx(
@@ -113,8 +113,9 @@ export default function Navbar() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-display font-bold tracking-tight leading-tight text-lg md:text-xl">
-                <span className="text-pucp-blue-dark">Educación</span> <span className="text-gold">Primaria</span>
+              <span className="font-display font-black tracking-tight leading-[0.95] text-lg md:text-2xl flex flex-col">
+                <span className="text-pucp-blue-dark">Ingeniería</span>
+                <span className="text-gold">Ambiental</span>
               </span>
             </div>
           </Link>
@@ -139,6 +140,11 @@ export default function Navbar() {
                   end={link.path === '/'}
                   aria-haspopup={link.groups ? 'true' : undefined}
                   aria-expanded={link.groups ? openSection === link.name : undefined}
+                  // Tras un clic de ratón el enlace conserva el foco y `group-focus-within`
+                  // mantendría el mega-menú abierto hasta hacer clic fuera. Lo soltamos para
+                  // que se cierre al retirar el puntero. El acceso por teclado (Tab) sigue
+                  // abriendo el menú vía focus-within, intacto.
+                  onClick={(e) => e.currentTarget.blur()}
                   className={({ isActive }) => clsx(
                   'font-body font-medium text-[16px] transition-colors flex items-center px-7 py-5 md:py-6',
                   isActive ? 'bg-gold text-blue-deep' : 'text-white hover:bg-white/10'
@@ -172,6 +178,7 @@ export default function Navbar() {
                                   href={item.path}
                                   target="_blank"
                                   rel="noopener noreferrer"
+                                  onClick={(e) => e.currentTarget.blur()}
                                   className="flex items-center justify-between gap-2 px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-50 hover:text-pucp-blue-dark transition-colors"
                                 >
                                   <span>{item.name}<span className="sr-only"> (abre en pestaña nueva)</span></span>
@@ -181,6 +188,7 @@ export default function Navbar() {
                                 <Link
                                   key={item.name}
                                   to={item.path}
+                                  onClick={(e) => e.currentTarget.blur()}
                                   className="block px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-50 hover:text-pucp-blue-dark transition-colors"
                                 >
                                   {item.name}

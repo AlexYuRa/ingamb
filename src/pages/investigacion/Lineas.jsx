@@ -10,7 +10,7 @@ export default function Lineas() {
       <div className="container mx-auto px-4 md:px-8">
         <SectionTitle
           title="Líneas de **Investigación**"
-          subtitle="Áreas prioritarias para la generación de conocimiento e innovación educativa."
+          subtitle="Áreas prioritarias para la generación de conocimiento e innovación ambiental."
           center
         />
 
