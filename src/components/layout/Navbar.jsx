@@ -112,8 +112,8 @@ export default function Navbar() {
                 )}
               />
             </div>
-            <div className="flex flex-col">
-              <span className="font-display font-black tracking-tight leading-[0.95] text-lg md:text-2xl flex flex-col">
+            <div className="flex flex-col ml-1 md:ml-3">
+              <span className="font-display font-black tracking-tight leading-[0.95] text-xl md:text-3xl flex flex-col">
                 <span className="text-pucp-blue-dark">Ingeniería</span>
                 <span className="text-gold">Ambiental</span>
               </span>
