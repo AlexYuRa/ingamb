@@ -198,7 +198,7 @@ export default function Inicio() {
                 className={`py-8 px-6 text-center border-white/10 ${idx < 3 ? 'lg:border-r' : ''} ${idx < 2 ? 'border-r' : ''} border-b lg:border-b-0`}
               >
                 <div
-                  className="text-4xl md:text-5xl font-display font-black mb-1"
+                  className="text-2xl md:text-4xl font-display font-black mb-1 text-gold"
                   style={{ textShadow: '0 0 20px rgba(230,172,9,0.3)' }}
                 >
                   {cifra.numero}

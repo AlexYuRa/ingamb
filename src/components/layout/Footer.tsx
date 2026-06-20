@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Clock, ExternalLink } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, ExternalLink, BookOpen } from 'lucide-react';
 import { informacionContacto, redesSociales } from '../../constants/contacto';
 import { socialIcons, socialLabels } from '../icons/social';
 import logo from '../../assets/unt1.png';
+
+// Libro de Reclamaciones oficial (plataforma del Estado peruano, UNT).
+const LIBRO_RECLAMACIONES_URL = 'https://reclamos.servicios.gob.pe/?institution_id=247';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -152,9 +155,20 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="bg-black/20 py-4">
-        <div className="container mx-auto px-4 md:px-8 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-gray-300">
+        <div className="container mx-auto px-4 md:px-8 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-300">
           <p>© {currentYear} Escuela Profesional de Ingeniería Ambiental · UNT. Todos los derechos reservados.</p>
-          <p>Ley de Transparencia N° 27806 — Acceso a la Información Pública</p>
+          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5">
+            <p>Ley de Transparencia N° 27806: Acceso a la Información Pública</p>
+            <a
+              href={LIBRO_RECLAMACIONES_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 border border-white/30 rounded-md px-3 py-1.5 font-semibold text-white hover:bg-white/10 transition-colors shrink-0"
+            >
+              <BookOpen className="w-4 h-4 text-gold" />
+              Libro de Reclamaciones
+            </a>
+          </div>
         </div>
       </div>
     </footer>
