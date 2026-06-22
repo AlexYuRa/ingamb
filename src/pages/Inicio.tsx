@@ -101,31 +101,37 @@ export default function Inicio() {
         className="relative overflow-hidden text-white flex items-center"
         style={{ minHeight: `max(420px, calc(100svh - ${headerHeight}px - ${cifrasHeight}px))` }}
       >
-        {/* Carrusel de fondo: crossfade suave. Las imágenes rotan solas;
-            el contenido del hero se queda fijo encima. */}
-        {heroImages.map((img, i) => (
-          <div
-            key={i}
-            aria-hidden="true"
-            className="absolute inset-0 z-0 bg-cover bg-center transition-opacity duration-[1500ms] ease-in-out"
-            style={{ backgroundImage: loadedImgs.has(i) ? `url(${img})` : undefined, opacity: i === heroIdx ? 1 : 0 }}
-          />
-        ))}
+        {/* Carrusel de fondo: capas <img> con composición en GPU para que el
+            navegador no repinte la imagen en cada scroll (clave en Firefox
+            móvil). El crossfade es solo opacidad; cada capa va en su propia
+            capa de compositor (transform-gpu + will-change). */}
+        {heroImages.map((img, i) =>
+          loadedImgs.has(i) ? (
+            <img
+              key={i}
+              src={img}
+              alt=""
+              aria-hidden="true"
+              decoding="async"
+              fetchPriority={i === 0 ? 'high' : 'low'}
+              className="absolute inset-0 z-0 w-full h-full object-cover object-center transition-opacity duration-[1500ms] ease-in-out transform-gpu"
+              style={{ opacity: i === heroIdx ? 1 : 0, willChange: 'opacity' }}
+            />
+          ) : null
+        )}
 
         {/* Overlay doble: izquierda transparente, derecha azul sólido */}
         <div className="absolute inset-0 z-[1]"
           style={{ background: 'linear-gradient(110deg, rgba(0,0,0,0.05) 0%, rgba(0,29,70,0.62) 42%, rgba(0,20,55,0.77) 70%, rgba(0,18,50,0.80) 100%)' }}
         />
 
-        {/* Patrón de puntos sutil */}
-        <svg className="absolute inset-0 w-full h-full z-[2] opacity-[0.04]" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="hero-dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
-              <circle cx="2" cy="2" r="1.5" fill="white" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#hero-dots)" />
-        </svg>
+        {/* Patrón de puntos sutil (radial-gradient CSS en vez de SVG: una capa
+            de pintura menos que recalcular durante el scroll). */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 z-[2] opacity-[0.04]"
+          style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,1) 1.5px, transparent 1.5px)', backgroundSize: '28px 28px' }}
+        />
 
         {/* Acento naranja diagonal en la derecha */}
         <div className="absolute right-0 top-0 bottom-0 w-2 bg-gradient-to-b from-gold via-gold/60 to-transparent z-10" />
