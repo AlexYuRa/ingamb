@@ -38,13 +38,9 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    // Histéresis para evitar el parpadeo encoger/crecer en el umbral: encoge al
-    // pasar 90px y solo vuelve a tamaño completo por debajo de 30px. La zona
-    // muerta (30–90) impide que un reajuste de layout cruce el umbral de ida y vuelta.
-    const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled((prev) => (prev ? y > 30 : y > 90));
-    };
+    // Solo añade una sombra al header cuando se separa del tope. Listener pasivo
+    // para no interferir con el rendimiento del scroll.
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);

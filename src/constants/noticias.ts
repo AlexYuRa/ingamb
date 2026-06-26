@@ -10,7 +10,7 @@ export const noticias = [
     fecha: '2025-06-15',
     fechaFormateada: '15 Jun 2025',
     link: '/investigacion/proyectos',
-    imagen: 'https://images.unsplash.com/photo-1473773508845-188df298d2d1?w=600&q=80',
+    imagen: 'https://picsum.photos/seed/congreso-ingenieria-ambiental/600/400',
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ export const noticias = [
     fecha: '2025-06-10',
     fechaFormateada: '10 Jun 2025',
     link: '/academico/convenios',
-    imagen: 'https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?w=600&q=80',
+    imagen: 'https://picsum.photos/seed/practicas-preprofesionales/600/400',
   },
   {
     id: 3,
@@ -34,6 +34,6 @@ export const noticias = [
     fecha: '2025-05-28',
     fechaFormateada: '28 May 2025',
     link: '/nosotros/historia',
-    imagen: 'https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=600&q=80',
+    imagen: 'https://picsum.photos/seed/laboratorio-aire-noticia/600/400',
   },
 ];

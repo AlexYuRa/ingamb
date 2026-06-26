@@ -149,9 +149,9 @@ const CYCLE_COLUMNS: Record<string, number> = {
 
 // ── Nodo de curso (colores por área, definidos por el usuario) ───────────────
 const AREA_STYLES: Record<AreaType, string> = {
-  general: 'border-l-emerald-500 bg-emerald-50 text-emerald-950 hover:bg-emerald-100/70',
-  especifico: 'border-l-orange-400 bg-orange-50 text-orange-950 hover:bg-orange-100/70',
-  especialidad: 'border-l-sky-400 bg-sky-50 text-sky-950 hover:bg-sky-100/70',
+  general: 'border-l-emerald-500 bg-white text-emerald-950 hover:bg-emerald-100/70',
+  especifico: 'border-l-orange-400 bg-white text-orange-950 hover:bg-orange-100/70',
+  especialidad: 'border-l-sky-400 bg-white text-sky-950 hover:bg-sky-100/70',
 };
 
 function CourseNode({ data }: NodeProps<CourseData>) {
@@ -352,7 +352,7 @@ export default function MallaFlow() {
               onClick={() => setShowHelp((v) => !v)}
               aria-label={showHelp ? 'Ocultar ayuda' : 'Mostrar ayuda'}
               aria-expanded={showHelp}
-              className="shrink-0 bg-slate-900/90 hover:bg-slate-900 text-sky-300 rounded-full p-1.5 shadow-md transition-colors"
+              className="shrink-0 h-11 w-11 flex items-center justify-center bg-slate-900/90 hover:bg-slate-900 text-sky-300 rounded-full shadow-md transition-colors"
             >
               <HelpCircle size={16} />
             </button>
@@ -405,8 +405,9 @@ export default function MallaFlow() {
         </aside>
       </div>
 
-      {/* Leyenda fuera del bloque, debajo (libera vista del grafo) */}
-      <div className="mt-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-slate-600">
+      {/* Leyenda fuera del bloque, debajo. Solo en móvil/tablet: en escritorio
+          el panel de resumen ya muestra las áreas, así no se duplica. */}
+      <div className="lg:hidden mt-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-slate-600">
         <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px]">Áreas</span>
         <span className="flex items-center gap-1.5"><span className="w-3.5 h-3.5 bg-emerald-50 border border-emerald-400 rounded" /> Estudios Generales</span>
         <span className="flex items-center gap-1.5"><span className="w-3.5 h-3.5 bg-orange-50 border border-orange-400 rounded" /> Estudios Específicos</span>
@@ -427,7 +428,7 @@ export default function MallaFlow() {
               type="button"
               onClick={() => setSelectedCourse(null)}
               aria-label="Cerrar"
-              className="absolute top-3 right-3 z-10 text-slate-400 hover:text-slate-600 p-1 rounded-lg hover:bg-slate-200 transition-colors"
+              className="absolute top-3 right-3 z-10 h-11 w-11 flex items-center justify-center text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-200 transition-colors"
             >
               <X size={18} />
             </button>

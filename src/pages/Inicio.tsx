@@ -79,11 +79,11 @@ export default function Inicio() {
   };
 
   const accesosRapidos = [
-    { titulo: "Plan de Estudios", descripcion: "Malla curricular actualizada por ciclos.", icono: BookOpen, link: "/academico/malla-curricular", imagen: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80" },
-    { titulo: "Plana Docente", descripcion: "Profesores e investigadores comprometidos.", icono: Users, link: "/organizacion/docentes", imagen: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80" },
-    { titulo: "Investigación", descripcion: "Líneas, proyectos y publicaciones activas.", icono: FlaskConical, link: "/investigacion/proyectos", imagen: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&q=80" },
-    { titulo: "Grados y Títulos", descripcion: "Pasos y requisitos para tu titulación.", icono: GraduationCap, link: "/academico/titulacion", imagen: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80" },
-    { titulo: "Convenios", descripcion: "Alianzas con entidades del sector ambiental.", icono: Handshake, link: "/academico/convenios", imagen: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=600&q=80" },
+    { titulo: "Plan de Estudios", descripcion: "Malla curricular actualizada por ciclos.", icono: BookOpen, link: "/academico/malla-curricular", imagen: "https://picsum.photos/seed/malla-plan-estudios/600/400" },
+    { titulo: "Plana Docente", descripcion: "Profesores e investigadores comprometidos.", icono: Users, link: "/organizacion/docentes", imagen: "https://picsum.photos/seed/plana-docente/600/400" },
+    { titulo: "Investigación", descripcion: "Líneas, proyectos y publicaciones activas.", icono: FlaskConical, link: "/investigacion/proyectos", imagen: "https://picsum.photos/seed/investigacion-ambiental/600/400" },
+    { titulo: "Grados y Títulos", descripcion: "Pasos y requisitos para tu titulación.", icono: GraduationCap, link: "/academico/titulacion", imagen: "https://picsum.photos/seed/grados-titulos/600/400" },
+    { titulo: "Convenios", descripcion: "Alianzas con entidades del sector ambiental.", icono: Handshake, link: "/academico/convenios", imagen: "https://picsum.photos/seed/convenios-alianzas/600/400" },
   ];
 
   // Cifras de impacto (datos de EJEMPLO para el demo; reemplazar por cifras
@@ -176,7 +176,7 @@ export default function Inicio() {
                 <motion.button
                   whileHover={{ scale: 1.04, boxShadow: '0 0 32px rgba(230,173,9,0.5)' }}
                   whileTap={{ scale: 0.97 }}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-deep text-white font-black px-6 py-3 sm:px-7 sm:py-3.5 rounded-xl text-sm sm:text-base transition-colors"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-deep text-white font-black px-6 py-3 sm:px-7 sm:py-3.5 rounded-xl text-sm sm:text-base transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
                 >
                   <GraduationCap className="w-5 h-5 shrink-0" />
                   Ver Plan de Estudios
@@ -186,7 +186,7 @@ export default function Inicio() {
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold px-6 py-3 sm:px-7 sm:py-3.5 rounded-xl text-sm sm:text-base backdrop-blur-sm transition"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold px-6 py-3 sm:px-7 sm:py-3.5 rounded-xl text-sm sm:text-base backdrop-blur-sm transition focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
                 >
                   Perfiles académicos
                   <ArrowRight className="w-4 h-4 shrink-0" />
@@ -256,7 +256,7 @@ export default function Inicio() {
                 >
                   {cifra.numero}
                 </div>
-                <p className="text-white font-bold text-[10px] leading-tight sm:text-sm md:text-base">{cifra.etiqueta}</p>
+                <p className="text-white font-bold text-[11px] leading-tight sm:text-sm md:text-base">{cifra.etiqueta}</p>
                 <p className="hidden sm:block text-white/60 text-xs mt-0.5">{cifra.sub}</p>
               </motion.div>
             ))}
@@ -284,10 +284,10 @@ export default function Inicio() {
 
               <div className="text-gray-700 font-body space-y-4 leading-relaxed">
                 <p>
-                  "Bienvenidos a la Escuela Profesional de Ingeniería Ambiental. Formamos
+                  «Bienvenidos a la Escuela Profesional de Ingeniería Ambiental. Formamos
                   ingenieros capaces de prevenir y resolver los problemas ambientales con
                   rigor científico y compromiso con la sostenibilidad. Te invitamos a conocer
-                  un programa que cuida cada detalle de tu formación."
+                  un programa que cuida cada detalle de tu formación.»
                 </p>
                 <footer className="text-sm text-gray-600 not-italic font-semibold">
                   Karen Valderrama, Decana de la Escuela Profesional de Ingeniería Ambiental
@@ -471,7 +471,7 @@ export default function Inicio() {
             >
               <div className="absolute inset-0">
                 <img
-                  src="https://images.unsplash.com/photo-1587691592099-24045742c181?w=800&q=80"
+                  src="https://picsum.photos/seed/laboratorio-calidad-agua/800/600"
                   alt="Laboratorio de Calidad de Agua"
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 opacity-60"
@@ -503,7 +503,7 @@ export default function Inicio() {
             >
               <div className="absolute inset-0">
                 <img
-                  src="https://images.unsplash.com/photo-1517430816045-df4b7ef11df1?w=800&q=80"
+                  src="https://picsum.photos/seed/monitoreo-calidad-aire/800/600"
                   alt="Monitoreo de Calidad del Aire"
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 opacity-60"

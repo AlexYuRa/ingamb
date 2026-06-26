@@ -17,7 +17,7 @@ export default {
         'gold-bright': '#FDF107', // Amarillo vivo (solo degradados)
         ink: '#1E1A17',           // Casi negro cálido (texto base)
         graphite: '#373435',      // Gris oscuro institucional
-        white: '#FDFDF3',         // Blanco cálido institucional (override del white)
+        white: '#FFFFFF',         // Blanco puro
 
         /* Semánticos */
         success: '#0C8F3D',       // Verde institucional (éxito)
